@@ -786,11 +786,8 @@
       `;
       document.head.appendChild(style);
 
-      // تحديد الرابط تلقائياً حسب البيئة
-      const API_URL =
-        window.location.hostname === "localhost"
-          ? "http://localhost:5000/api"
-          : window.location.origin + "/api";
+      // رابط الـ API على PythonAnywhere
+      const API_URL = "https://admin999.pythonanywhere.com/api";
 
       document
         .getElementById("loginForm")

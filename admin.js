@@ -69,6 +69,18 @@ function handleAdminLogout() {
 
 // التحقق من جلسة الدخول عند التحميل
 function checkAdminSession() {
+  // أولاً: التحقق من أن المستخدم مسجل دخول كأدمن من النظام الرئيسي
+  const isAdmin = localStorage.getItem("is_admin");
+  const token = localStorage.getItem("auth_token");
+  const username = localStorage.getItem("username");
+
+  // إذا مو أدمن، ارجعه لصفحة الدخول
+  if (!token || isAdmin !== "1") {
+    alert("⛔ هذه الصفحة للمسؤولين فقط!");
+    window.location.href = "login.html";
+    return;
+  }
+
   const session = localStorage.getItem("akram6_admin_session");
   if (session) {
     try {

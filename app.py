@@ -17,17 +17,46 @@ CORS(app)  # السماح بالطلبات من أي مصدر
 DATABASE = 'messaging_system.db'
 
 
+# ============ اختبار الاتصال ============
+
+@app.route('/api/check')
+def api_check():
+    """التحقق من أن الـ API يعمل"""
+    return jsonify({
+        'status': 'ok',
+        'message': 'API يعمل بنجاح! 🎉'
+    }), 200
+
+
 # ============ خدمة الملفات الثابتة ============
 
 @app.route('/')
 def serve_index():
-    return send_from_directory('.', 'index.html')
+    """الصفحة الرئيسية = صفحة تسجيل الدخول"""
+    return send_from_directory('.', 'login.html')
 
 @app.route('/<path:filename>')
 def serve_static(filename):
+    # الملفات المسموح بها بدون تسجيل دخول
+    public_files = ['login.html', 'register.html', 'style.css', 'script.js',
+                    'login.css', 'register.css', 'favicon.ico']
+    public_dirs = ['images/', 'fonts/']
+
+    # السماح بالملفات العامة
+    if filename in public_files or any(filename.startswith(d) for d in public_dirs):
+        if os.path.exists(filename):
+            return send_from_directory('.', filename)
+
+    # السماح بملفات CSS و JS
+    if filename.endswith('.css') or filename.endswith('.js') or filename.endswith('.gif') or filename.endswith('.png') or filename.endswith('.jpg'):
+        if os.path.exists(filename):
+            return send_from_directory('.', filename)
+
+    # باقي الملفات تحتاج تسجيل دخول
     if os.path.exists(filename):
         return send_from_directory('.', filename)
-    return send_from_directory('.', 'index.html')
+
+    return send_from_directory('.', 'login.html')
 
 # ============ إدارة قاعدة البيانات ============
 

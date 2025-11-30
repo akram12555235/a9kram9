@@ -695,7 +695,7 @@ document.addEventListener("keydown", async (e) => {
 });
 
 // ===== Profile Widget =====
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://admin999.pythonanywhere.com/api";
 
 function loadUserProfile() {
   const token = localStorage.getItem("token");
