@@ -187,6 +187,14 @@ function buildDynamicGallery() {
 
   container.innerHTML = "";
 
+  console.log(
+    "Loading gallery with",
+    featuredImages.length,
+    "featured images and",
+    regularImages.length,
+    "regular images"
+  );
+
   // إضافة الصور المميزة أولاً بتصميم خاص
   featuredImages.forEach((img, idx) => {
     const figure = document.createElement("figure");
