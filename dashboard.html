@@ -725,7 +725,15 @@
 
       /* نموذج إرسال رسالة */
       .compose-form {
-        max-width: 700px;
+        max-width: 800px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.05),
+          rgba(0, 224, 255, 0.03)
+        );
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
       }
 
       .form-group {
@@ -733,9 +741,11 @@
       }
 
       .form-group label {
-        display: block;
-        margin-bottom: 10px;
-        color: #ccc;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        color: var(--primary);
         font-weight: 600;
         font-size: 1rem;
       }
@@ -761,6 +771,192 @@
       textarea.form-control {
         min-height: 180px;
         resize: vertical;
+      }
+
+      /* منطقة رفع الصور */
+      .image-upload-area {
+        border: 2px dashed var(--glass-border);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(0, 0, 0, 0.2);
+        margin-bottom: 15px;
+      }
+
+      .image-upload-area:hover {
+        border-color: var(--primary);
+        background: rgba(8, 247, 163, 0.05);
+      }
+
+      .image-upload-area.has-image {
+        border-color: var(--primary);
+        border-style: solid;
+      }
+
+      .image-upload-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      .image-upload-text {
+        color: #888;
+        font-size: 0.95rem;
+      }
+
+      .image-preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .image-preview-item {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid var(--glass-border);
+      }
+
+      .image-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .image-preview-remove {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 24px;
+        height: 24px;
+        background: rgba(255, 0, 0, 0.8);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .image-preview-remove:hover {
+        background: #ff0000;
+        transform: scale(1.1);
+      }
+
+      /* أزرار إرسال الرسالة */
+      .compose-actions {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .compose-actions .btn {
+        flex: 1;
+        min-width: 150px;
+        padding: 15px 25px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .btn-attach {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        border: none;
+        color: white;
+      }
+
+      .btn-attach:hover {
+        background: linear-gradient(135deg, #5558e6, #7c4fd4);
+        box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+      }
+
+      /* رسالة مع صورة */
+      .message-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid var(--glass-border);
+      }
+
+      .message-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid var(--glass-border);
+      }
+
+      .message-image:hover {
+        transform: scale(1.05);
+        border-color: var(--primary);
+        box-shadow: 0 5px 20px rgba(8, 247, 163, 0.3);
+      }
+
+      .message-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* عرض الصورة بالحجم الكامل */
+      .image-lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 20px;
+      }
+
+      .image-lightbox.active {
+        display: flex;
+      }
+
+      .image-lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 15px;
+        box-shadow: 0 10px 50px rgba(8, 247, 163, 0.3);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(255, 0, 0, 0.5);
+        transform: rotate(90deg);
       }
 
       /* البحث */
@@ -1253,16 +1449,16 @@
       <!-- قسم إرسال رسالة -->
       <section id="section-compose" class="section">
         <div class="section-header">
-          <h2>✉️ إرسال رسالة جديدة</h2>
+          <h2><span class="icon">✉️</span> إرسال رسالة جديدة</h2>
         </div>
         <div class="compose-form">
           <div class="form-group">
-            <label>المستلم</label>
+            <label>👤 المستلم</label>
             <input
               type="text"
               class="form-control"
               id="recipientSearch"
-              placeholder="ابحث عن المستخدم..."
+              placeholder="🔍 ابحث عن المستخدم..."
               oninput="searchRecipient()"
             />
             <div class="search-results" id="recipientResults"></div>
@@ -1271,33 +1467,83 @@
               id="selectedRecipient"
               style="
                 margin-top: 10px;
-                padding: 10px;
-                background: rgba(102, 126, 234, 0.2);
-                border-radius: 8px;
+                padding: 12px 15px;
+                background: linear-gradient(
+                  135deg,
+                  rgba(8, 247, 163, 0.15),
+                  rgba(0, 224, 255, 0.1)
+                );
+                border-radius: 12px;
+                border: 1px solid var(--primary);
                 display: none;
               "
             ></div>
           </div>
           <div class="form-group">
-            <label>الموضوع</label>
+            <label>📌 الموضوع</label>
             <input
               type="text"
               class="form-control"
               id="messageSubject"
-              placeholder="موضوع الرسالة"
+              placeholder="موضوع الرسالة..."
             />
           </div>
           <div class="form-group">
-            <label>المحتوى</label>
+            <label>💬 المحتوى</label>
             <textarea
               class="form-control"
               id="messageContent"
               placeholder="اكتب رسالتك هنا..."
             ></textarea>
           </div>
-          <button class="btn btn-primary" onclick="sendMessage()">
-            📨 إرسال الرسالة
-          </button>
+
+          <!-- منطقة رفع الصور -->
+          <div class="form-group">
+            <label>🖼️ إرفاق صور</label>
+            <div
+              class="image-upload-area"
+              onclick="document.getElementById('messageImageInput').click()"
+            >
+              <span class="image-upload-icon">📷</span>
+              <p class="image-upload-text">
+                اضغط هنا لاختيار صور أو اسحبها وأفلتها
+              </p>
+              <p style="color: #666; font-size: 0.8rem; margin-top: 5px">
+                الحد الأقصى: 3 صور - 2MB لكل صورة
+              </p>
+            </div>
+            <input
+              type="file"
+              id="messageImageInput"
+              accept="image/*"
+              multiple
+              style="display: none"
+              onchange="handleMessageImages(event)"
+            />
+            <div
+              class="image-preview-container"
+              id="messageImagesPreview"
+            ></div>
+          </div>
+
+          <div class="compose-actions">
+            <button class="btn btn-primary" onclick="sendMessage()">
+              📨 إرسال الرسالة
+            </button>
+            <button
+              class="btn btn-attach"
+              onclick="document.getElementById('messageImageInput').click()"
+            >
+              📎 إرفاق صورة
+            </button>
+            <button
+              class="btn"
+              onclick="clearComposeForm()"
+              style="background: rgba(255, 255, 255, 0.1)"
+            >
+              🗑️ مسح الكل
+            </button>
+          </div>
         </div>
       </section>
 
@@ -1450,7 +1696,10 @@
           <span id="modalSender"></span> • <span id="modalDate"></span>
         </div>
         <div id="modalContent" style="line-height: 1.8"></div>
-        <div style="margin-top: 20px">
+        <div id="modalImages" class="message-images"></div>
+        <div
+          style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap"
+        >
           <button class="btn btn-primary" onclick="replyToMessage()">
             ↩️ رد
           </button>
@@ -1459,6 +1708,12 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <!-- Lightbox لعرض الصور بالحجم الكامل -->
+    <div class="image-lightbox" id="imageLightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <img id="lightboxImage" src="" alt="صورة" />
     </div>
 
     <script>
@@ -1798,7 +2053,32 @@
         document.getElementById("modalDate").textContent = formatDate(
           msg.created_at
         );
-        document.getElementById("modalContent").textContent = msg.content;
+
+        // عرض المحتوى مع إزالة علامة الصور
+        let content = msg.content || "";
+        content = content.replace(/\n\n\[📷 تم إرفاق \d+ صورة\]/g, "");
+        document.getElementById("modalContent").textContent = content;
+
+        // عرض الصور إن وجدت
+        const imagesContainer = document.getElementById("modalImages");
+        const savedImages = localStorage.getItem("msg_images_" + id);
+
+        if (savedImages) {
+          const images = JSON.parse(savedImages);
+          imagesContainer.innerHTML = images
+            .map(
+              (img) => `
+            <div class="message-image" onclick="openLightbox('${img}')">
+              <img src="${img}" alt="صورة مرفقة">
+            </div>
+          `
+            )
+            .join("");
+          imagesContainer.style.display = "flex";
+        } else {
+          imagesContainer.innerHTML = "";
+          imagesContainer.style.display = "none";
+        }
 
         document.getElementById("messageModal").classList.add("show");
 
@@ -1810,6 +2090,7 @@
 
       function closeModal() {
         document.getElementById("messageModal").classList.remove("show");
+        document.getElementById("modalImages").innerHTML = "";
       }
 
       async function markAsRead(id) {
@@ -1992,6 +2273,93 @@
         selectRecipient(id, name, name);
       }
 
+      // ========== إدارة صور الرسائل ==========
+      let messageImages = [];
+
+      function handleMessageImages(event) {
+        const files = Array.from(event.target.files);
+
+        if (messageImages.length + files.length > 3) {
+          showToast("الحد الأقصى 3 صور فقط!", "error");
+          return;
+        }
+
+        files.forEach((file) => {
+          if (file.size > 2 * 1024 * 1024) {
+            showToast(`الصورة ${file.name} كبيرة جداً (الحد 2MB)`, "error");
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            messageImages.push(e.target.result);
+            renderMessageImagesPreview();
+            document
+              .querySelector(".image-upload-area")
+              .classList.add("has-image");
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function renderMessageImagesPreview() {
+        const container = document.getElementById("messageImagesPreview");
+        container.innerHTML = messageImages
+          .map(
+            (img, index) => `
+          <div class="image-preview-item">
+            <img src="${img}" alt="صورة ${
+              index + 1
+            }" onclick="openLightbox('${img}')">
+            <button class="image-preview-remove" onclick="removeMessageImage(${index})">×</button>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      function removeMessageImage(index) {
+        messageImages.splice(index, 1);
+        renderMessageImagesPreview();
+        if (messageImages.length === 0) {
+          document
+            .querySelector(".image-upload-area")
+            .classList.remove("has-image");
+        }
+      }
+
+      function clearComposeForm() {
+        clearRecipient();
+        document.getElementById("messageSubject").value = "";
+        document.getElementById("messageContent").value = "";
+        messageImages = [];
+        document.getElementById("messageImagesPreview").innerHTML = "";
+        document
+          .querySelector(".image-upload-area")
+          .classList.remove("has-image");
+        showToast("تم مسح النموذج", "info");
+      }
+
+      // ========== Lightbox ==========
+      function openLightbox(imageSrc) {
+        document.getElementById("lightboxImage").src = imageSrc;
+        document.getElementById("imageLightbox").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        document.getElementById("imageLightbox").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // إغلاق Lightbox بالضغط على Escape
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeLightbox();
+          closeModal();
+        }
+      });
+
       // ========== إرسال رسالة ==========
       async function sendMessage() {
         const receiverId = document.getElementById("recipientId").value;
@@ -2002,12 +2370,21 @@
           showToast("اختر المستلم أولاً", "error");
           return;
         }
-        if (!content) {
-          showToast("اكتب محتوى الرسالة", "error");
+        if (!content && messageImages.length === 0) {
+          showToast("اكتب محتوى الرسالة أو أرفق صورة", "error");
           return;
         }
 
         try {
+          // حفظ الصور محلياً مع الرسالة
+          const messageData = {
+            receiver_id: parseInt(receiverId),
+            subject: subject || "بدون موضوع",
+            content: content,
+            images: messageImages,
+            timestamp: new Date().toISOString(),
+          };
+
           const res = await fetch(`${API_URL}/messages/send`, {
             method: "POST",
             headers: {
@@ -2017,15 +2394,26 @@
             body: JSON.stringify({
               receiver_id: parseInt(receiverId),
               subject: subject || "بدون موضوع",
-              content: content,
+              content:
+                content +
+                (messageImages.length > 0
+                  ? `\n\n[📷 تم إرفاق ${messageImages.length} صورة]`
+                  : ""),
             }),
           });
 
           if (res.ok) {
+            const result = await res.json();
+            // حفظ الصور محلياً مع معرف الرسالة
+            if (messageImages.length > 0 && result.message_id) {
+              localStorage.setItem(
+                "msg_images_" + result.message_id,
+                JSON.stringify(messageImages)
+              );
+            }
+
             showToast("✅ تم إرسال الرسالة بنجاح", "success");
-            clearRecipient();
-            document.getElementById("messageSubject").value = "";
-            document.getElementById("messageContent").value = "";
+            clearComposeForm();
             loadOutbox();
           } else {
             const err = await res.json();
