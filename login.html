@@ -821,10 +821,24 @@
               localStorage.setItem("user_id", result.user_id);
               localStorage.setItem("username", result.username);
               localStorage.setItem("is_admin", result.is_admin);
+
+              console.log("Login result:", result);
+              console.log(
+                "is_admin value:",
+                result.is_admin,
+                "type:",
+                typeof result.is_admin
+              );
+
               showMessage("✅ تم الدخول بنجاح! جارٍ الانتقال...", "success");
               setTimeout(() => {
                 // الأدمن يروح للوحة تحكم الأدمن، والأعضاء للوحة العادية
-                if (result.is_admin === 1 || result.is_admin === "1") {
+                // فقط المستخدم admin يروح للوحة التحكم
+                if (
+                  result.is_admin === 1 ||
+                  result.is_admin === "1" ||
+                  result.is_admin === true
+                ) {
                   window.location.href = "admin.html";
                 } else {
                   window.location.href = "dashboard.html";
