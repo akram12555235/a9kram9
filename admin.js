@@ -14,48 +14,57 @@ let currentSort = "newest";
 
 // ============ إدارة جلسة الدخول ============
 
-function handleAdminLogin(event) {
+async function handleAdminLogin(event) {
   event.preventDefault();
 
   const username = document.getElementById("admin-username").value;
   const password = document.getElementById("admin-password").value;
 
   console.log("Login attempt:", username, password);
-  console.log(
-    "Expected:",
-    ADMIN_CREDENTIALS.username,
-    ADMIN_CREDENTIALS.password
-  );
 
-  // التحقق من بيانات الدخول
-  if (
-    username === ADMIN_CREDENTIALS.username &&
-    password === ADMIN_CREDENTIALS.password
-  ) {
-    console.log("Login successful!");
-    // حفظ الجلسة
-    currentAdminUser = username;
-    localStorage.setItem(
-      "akram6_admin_session",
-      JSON.stringify({
-        user: username,
-        loginTime: new Date().toISOString(),
-      })
-    );
+  // تسجيل الدخول عبر API للحصول على توكن
+  try {
+    const response = await fetch(`${window.location.origin}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-    // إظهار لوحة التحكم
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("admin-dashboard").classList.remove("hidden");
+    const data = await response.json();
 
-    // تحديث البيانات
-    updateDashboard();
+    if (response.ok && data.is_admin) {
+      console.log("Login successful!");
+      // حفظ التوكن والجلسة
+      localStorage.setItem("token", data.token);
+      currentAdminUser = username;
+      localStorage.setItem(
+        "akram6_admin_session",
+        JSON.stringify({
+          user: username,
+          loginTime: new Date().toISOString(),
+          token: data.token,
+        })
+      );
 
-    // تحديث بيانات كل 10 ثوانٍ
-    setInterval(updateDashboard, 10000);
+      // إظهار لوحة التحكم
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("admin-dashboard").classList.remove("hidden");
 
-    showNotification("✅ مرحباً بك في لوحة التحكم!", "success");
-  } else {
-    showNotification("❌ بيانات الدخول غير صحيحة!", "error");
+      // تحديث البيانات
+      updateDashboard();
+
+      // تحديث بيانات كل 10 ثوانٍ
+      setInterval(updateDashboard, 10000);
+
+      showNotification("✅ مرحباً بك في لوحة التحكم!", "success");
+    } else if (response.ok && !data.is_admin) {
+      showNotification("❌ هذا الحساب ليس مسؤول!", "error");
+    } else {
+      showNotification("❌ بيانات الدخول غير صحيحة!", "error");
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    showNotification("❌ خطأ في الاتصال بالخادم", "error");
   }
 }
 
@@ -66,6 +75,7 @@ function handleAdminLogout() {
     () => {
       currentAdminUser = null;
       localStorage.removeItem("akram6_admin_session");
+      localStorage.removeItem("token");
       document.getElementById("admin-dashboard").classList.add("hidden");
       document.getElementById("login-screen").style.display = "flex";
       document.getElementById("admin-username").value = "";
@@ -83,6 +93,10 @@ function checkAdminSession() {
     try {
       const data = JSON.parse(session);
       currentAdminUser = data.user;
+      // استرجاع التوكن إذا موجود
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
       document.getElementById("login-screen").style.display = "none";
       document.getElementById("admin-dashboard").classList.remove("hidden");
       document.getElementById("current-user").textContent = data.user;
@@ -90,6 +104,7 @@ function checkAdminSession() {
       setInterval(updateDashboard, 10000);
     } catch (e) {
       localStorage.removeItem("akram6_admin_session");
+      localStorage.removeItem("token");
     }
   }
 }
