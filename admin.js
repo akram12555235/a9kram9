@@ -866,3 +866,202 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// ============ إدارة الأعضاء ============
+
+const MEMBERS_API_URL = "https://admin999.pythonanywhere.com/api";
+
+function getAuthToken() {
+  return localStorage.getItem("token");
+}
+
+async function loadPendingRegistrations() {
+  const container = document.getElementById("pending-registrations");
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${MEMBERS_API_URL}/admin/pending-registrations`, {
+      headers: { Authorization: getAuthToken() },
+    });
+
+    if (!res.ok) throw new Error("فشل جلب البيانات");
+
+    const pending = await res.json();
+
+    if (pending.length === 0) {
+      container.innerHTML =
+        '<p class="empty-preview">لا توجد طلبات معلقة 🎉</p>';
+      return;
+    }
+
+    container.innerHTML = pending
+      .map(
+        (user) => `
+        <div class="member-card pending">
+          <div class="member-info">
+            <div class="member-avatar">👤</div>
+            <div class="member-details">
+              <span class="member-name">${escapeHtml(
+                user.full_name || user.username
+              )}</span>
+              <span class="member-username">@${escapeHtml(user.username)}</span>
+              <span class="member-email">📧 ${escapeHtml(user.email)}</span>
+              ${
+                user.bio
+                  ? `<span class="member-bio">📝 ${escapeHtml(user.bio)}</span>`
+                  : ""
+              }
+              <span class="member-date">📅 ${new Date(
+                user.created_at
+              ).toLocaleDateString("ar-EG")}</span>
+            </div>
+          </div>
+          <div class="member-actions">
+            <button class="btn primary small" onclick="approveUser(${
+              user.id
+            })">✅ موافقة</button>
+            <button class="btn danger small" onclick="rejectUser(${
+              user.id
+            })">❌ رفض</button>
+          </div>
+        </div>
+      `
+      )
+      .join("");
+  } catch (e) {
+    container.innerHTML = `<p class="error-preview">❌ خطأ: ${e.message}</p>`;
+  }
+}
+
+async function loadApprovedMembers() {
+  const container = document.getElementById("approved-members");
+  if (!container) return;
+
+  try {
+    const res = await fetch(`${MEMBERS_API_URL}/admin/all-users`, {
+      headers: { Authorization: getAuthToken() },
+    });
+
+    if (!res.ok) throw new Error("فشل جلب البيانات");
+
+    const users = await res.json();
+    const approved = users.filter((u) => u.status === "approved");
+
+    if (approved.length === 0) {
+      container.innerHTML =
+        '<p class="empty-preview">لا يوجد أعضاء موافق عليهم</p>';
+      return;
+    }
+
+    container.innerHTML = approved
+      .map(
+        (user) => `
+        <div class="member-card approved">
+          <div class="member-info">
+            <div class="member-avatar">${user.is_admin ? "👑" : "👤"}</div>
+            <div class="member-details">
+              <span class="member-name">${escapeHtml(
+                user.full_name || user.username
+              )} ${user.is_admin ? "(أدمن)" : ""}</span>
+              <span class="member-username">@${escapeHtml(user.username)}</span>
+              <span class="member-email">📧 ${escapeHtml(user.email)}</span>
+            </div>
+          </div>
+          <div class="member-actions">
+            ${
+              !user.is_admin
+                ? `<button class="btn danger small" onclick="deleteUser(${user.id})">🗑️ حذف</button>`
+                : ""
+            }
+          </div>
+        </div>
+      `
+      )
+      .join("");
+  } catch (e) {
+    container.innerHTML = `<p class="error-preview">❌ خطأ: ${e.message}</p>`;
+  }
+}
+
+async function approveUser(userId) {
+  try {
+    const res = await fetch(
+      `${MEMBERS_API_URL}/admin/approve-registration/${userId}`,
+      {
+        method: "POST",
+        headers: { Authorization: getAuthToken() },
+      }
+    );
+
+    if (res.ok) {
+      showNotification("✅ تمت الموافقة على العضو بنجاح!", "success");
+      loadPendingRegistrations();
+      loadApprovedMembers();
+    } else {
+      const data = await res.json();
+      showNotification("❌ " + (data.error || "فشل الموافقة"), "error");
+    }
+  } catch (e) {
+    showNotification("❌ خطأ في الاتصال", "error");
+  }
+}
+
+async function rejectUser(userId) {
+  const reason = prompt("📝 أدخل سبب الرفض (اختياري):");
+
+  try {
+    const res = await fetch(
+      `${MEMBERS_API_URL}/admin/reject-registration/${userId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: getAuthToken(),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reason: reason || "" }),
+      }
+    );
+
+    if (res.ok) {
+      showNotification("❌ تم رفض الطلب", "success");
+      loadPendingRegistrations();
+    } else {
+      const data = await res.json();
+      showNotification("❌ " + (data.error || "فشل الرفض"), "error");
+    }
+  } catch (e) {
+    showNotification("❌ خطأ في الاتصال", "error");
+  }
+}
+
+async function deleteUser(userId) {
+  if (!confirm("⚠️ هل أنت متأكد من حذف هذا العضو؟")) return;
+
+  try {
+    const res = await fetch(`${MEMBERS_API_URL}/admin/delete-user/${userId}`, {
+      method: "DELETE",
+      headers: { Authorization: getAuthToken() },
+    });
+
+    if (res.ok) {
+      showNotification("🗑️ تم حذف العضو", "success");
+      loadApprovedMembers();
+    } else {
+      const data = await res.json();
+      showNotification("❌ " + (data.error || "فشل الحذف"), "error");
+    }
+  } catch (e) {
+    showNotification("❌ خطأ في الاتصال", "error");
+  }
+}
+
+// تحميل الأعضاء عند الضغط على قسم الأعضاء
+document.addEventListener("DOMContentLoaded", () => {
+  const membersBtn = document.querySelector('[data-section="members"]');
+  if (membersBtn) {
+    membersBtn.addEventListener("click", () => {
+      loadPendingRegistrations();
+      loadApprovedMembers();
+    });
+  }
+});

@@ -741,6 +741,36 @@ def search_users():
     }), 200
 
 
+@app.route('/api/contacts/add', methods=['POST'])
+def add_contact():
+    """إضافة جهة اتصال"""
+    token = request.headers.get('Authorization')
+    if token and token.startswith('Bearer '):
+        token = token[7:]
+
+    user = get_user_by_token(token)
+    if not user:
+        return jsonify({'error': 'غير مصرح'}), 401
+
+    data = request.get_json()
+    contact_id = data.get('contact_id')
+
+    if not contact_id:
+        return jsonify({'error': 'معرف جهة الاتصال مطلوب'}), 400
+
+    conn = get_db()
+    try:
+        conn.execute('''
+            INSERT OR IGNORE INTO contacts (user_id, contact_id) VALUES (?, ?)
+        ''', (user['id'], contact_id))
+        conn.commit()
+        conn.close()
+        return jsonify({'message': 'تمت إضافة جهة الاتصال'}), 201
+    except Exception as e:
+        conn.close()
+        return jsonify({'error': str(e)}), 500
+
+
 # ============ تشغيل السيرفر ============
 
 if __name__ == '__main__':

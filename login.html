@@ -822,7 +822,12 @@
               localStorage.setItem("is_admin", result.is_admin);
               showMessage("✅ تم الدخول بنجاح! جارٍ الانتقال...", "success");
               setTimeout(() => {
-                window.location.href = "dashboard_old.html";
+                // الأدمن يروح للوحة تحكم الأدمن، والأعضاء للوحة العادية
+                if (result.is_admin === 1 || result.is_admin === "1") {
+                  window.location.href = "admin.html";
+                } else {
+                  window.location.href = "dashboard.html";
+                }
               }, 1500);
             } else {
               const error = result.error || "فشل تسجيل الدخول";

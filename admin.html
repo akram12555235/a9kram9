@@ -77,6 +77,9 @@
             <button class="nav-btn" data-section="analytics">
               📈 الإحصائيات
             </button>
+            <button class="nav-btn" data-section="members">
+              👥 إدارة الأعضاء
+            </button>
             <button class="nav-btn" data-section="settings">
               ⚙️ الإعدادات
             </button>
@@ -211,6 +214,27 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <!-- قسم إدارة الأعضاء -->
+          <section id="members-section" class="admin-section">
+            <h2>👥 إدارة الأعضاء</h2>
+
+            <!-- طلبات التسجيل المعلقة -->
+            <div class="members-panel">
+              <h3>⏳ طلبات التسجيل المعلقة</h3>
+              <div id="pending-registrations" class="members-list">
+                <p class="loading">جاري التحميل...</p>
+              </div>
+            </div>
+
+            <!-- الأعضاء الموافق عليهم -->
+            <div class="members-panel" style="margin-top: 2rem">
+              <h3>✅ الأعضاء الموافق عليهم</h3>
+              <div id="approved-members" class="members-list">
+                <p class="loading">جاري التحميل...</p>
+              </div>
             </div>
           </section>
 
