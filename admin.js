@@ -5,7 +5,7 @@
 // ============ بيانات الدخول الافتراضية ============
 const ADMIN_CREDENTIALS = {
   username: "admin",
-  password: "akram6_2024", // يمكن تغييرها
+  password: "Akram@2024#Secure", // كلمة مرور قوية
 };
 
 let currentAdminUser = null;
@@ -69,18 +69,7 @@ function handleAdminLogout() {
 
 // التحقق من جلسة الدخول عند التحميل
 function checkAdminSession() {
-  // أولاً: التحقق من أن المستخدم مسجل دخول كأدمن من النظام الرئيسي
-  const isAdmin = localStorage.getItem("is_admin");
-  const token = localStorage.getItem("auth_token");
-  const username = localStorage.getItem("username");
-
-  // إذا مو أدمن، ارجعه لصفحة الدخول
-  if (!token || isAdmin !== "1") {
-    alert("⛔ هذه الصفحة للمسؤولين فقط!");
-    window.location.href = "login.html";
-    return;
-  }
-
+  // التحقق من جلسة لوحة التحكم مباشرة
   const session = localStorage.getItem("akram6_admin_session");
   if (session) {
     try {
