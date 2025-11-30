@@ -2,80 +2,307 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>المقالات والتحليلات</title>
+    <title>معرض الصور الرسمي | منصة أكرم</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .hero-gallery {
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a1a2e 50%,
+          #0f3460 100%
+        );
+        padding: 60px 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-gallery::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2300ff88" opacity="0.1"/></svg>');
+        background-size: 50px 50px;
+        animation: moveStars 20s linear infinite;
+      }
+      @keyframes moveStars {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-50px);
+        }
+      }
+      .hero-gallery h1 {
+        font-size: 3rem;
+        background: linear-gradient(90deg, #00ff88, #00d4ff, #ff6b6b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-gallery p {
+        color: #aaa;
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .gallery-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+      .photo-card {
+        background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        transition: all 0.4s ease;
+        position: relative;
+      }
+      .photo-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0, 255, 136, 0.3);
+        border-color: #00ff88;
+      }
+      .photo-card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .photo-card:hover img {
+        transform: scale(1.05);
+      }
+      .photo-info {
+        padding: 25px;
+        background: rgba(0, 0, 0, 0.6);
+      }
+      .photo-info h3 {
+        color: #00ff88;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .photo-info p {
+        color: #ccc;
+        line-height: 1.8;
+        font-size: 0.95rem;
+      }
+      .photo-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, #00ff88, #00d4ff);
+        color: #000;
+        padding: 8px 15px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+      .stats-section {
+        background: linear-gradient(135deg, #1a1a2e, #0a0a0a);
+        padding: 50px 20px;
+        text-align: center;
+        border-top: 1px solid rgba(0, 255, 136, 0.2);
+        border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+      }
+      .stats-grid {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-number {
+        font-size: 3rem;
+        color: #00ff88;
+        font-weight: bold;
+      }
+      .stat-label {
+        color: #888;
+        margin-top: 5px;
+      }
+    </style>
   </head>
   <body>
     <div class="noise-overlay"></div>
 
     <header class="main-header">
       <div class="logo">
-        <span class="logo-main">منضمة اكرم</span>
-        <span class="logo-sub">مقالات وتحليلات</span>
+        <span class="logo-main">منصة أكرم</span>
+        <span class="logo-sub">المعرض الرسمي</span>
       </div>
       <nav class="top-nav">
         <a href="index.html">الرئيسية</a>
         <a href="about.html">عن الموقع</a>
         <a href="news.html">📰 الأخبار</a>
         <a href="gallery.html">المعرض</a>
-        <a href="articles.html" class="active">المقالات</a>
+        <a href="articles.html" class="active">الصور الرسمية</a>
         <a href="contact.html">تواصل</a>
       </nav>
     </header>
 
-    <div class="layout">
-      <aside class="sidebar right-sidebar">
-        <h3>أقسام المقالات</h3>
-        <ul>
-          <li><a href="#masons">حول الماسونية</a></li>
-          <li><a href="#media">الهاكر في الإعلام</a></li>
-          <li><a href="#design">تصميم واجهات غامضة</a></li>
-        </ul>
-      </aside>
+    <!-- Hero Section -->
+    <section class="hero-gallery">
+      <h1>🏛️ المعرض الرسمي للدولة</h1>
+      <p>
+        لقطات حصرية توثق الإنجازات والمناسبات الرسمية - صور تحكي قصة الفخر
+        والعزة
+      </p>
+    </section>
 
-      <main class="content">
-        <section class="card" id="masons">
-          <h1>نظرة عامة على الماسونية (من زاوية تصميمية)</h1>
-          <p>
-            بدلاً من الدخول في تفاصيل تاريخية معقدة، يركّز هذا الموقع على
-            <strong>الرموز البصرية</strong> المرتبطة بالماسونية وكيف يمكن
-            استخدامها في التصميم الجرافيكي وصناعة الهويات البصرية الغامضة.
-          </p>
-        </section>
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">9</div>
+          <div class="stat-label">صور حصرية</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">HD</div>
+          <div class="stat-label">جودة عالية</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2025</div>
+          <div class="stat-label">توثيق حديث</div>
+        </div>
+      </div>
+    </section>
 
-        <section class="card" id="media">
-          <h2>صورة الهاكر في الإعلام</h2>
-          <p>
-            في الأفلام والألعاب، يظهر الهاكر دائماً في غرفة مظلمة مع شاشات مليئة
-            بالأكواد، وهذا ما نقوم بتقليده هنا بشكل
-            <strong>فني ووَهْمي</strong> لإضافة جو خاص للموقع.
-          </p>
-        </section>
+    <!-- Gallery Container -->
+    <div class="gallery-container">
+      <div class="photo-grid">
+        <div class="photo-card">
+          <span class="photo-badge">⭐ مميزة</span>
+          <img src="images/photo_2025-11-30_18-01-53.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🎖️ القيادة الحكيمة</h3>
+            <p>
+              صورة توثق لحظات القيادة الرشيدة والحكمة في إدارة شؤون الدولة. رمز
+              للعطاء والتفاني في خدمة الوطن والمواطن.
+            </p>
+          </div>
+        </div>
 
-        <section class="card" id="design">
-          <h2>كيف تصمم واجهة غامضة واحترافية؟</h2>
-          <ol>
-            <li>استخدم ألوان داكنة (أسود، رمادي، أخضر غامق).</li>
-            <li>أضف رموز هندسية وخطوط متقاطعة.</li>
-            <li>استخدم خطوطاً ثابتة وواضحة لسهولة القراءة.</li>
-            <li>أضف تأثيرات بسيطة مثل الظلال والأنيميشن الخفيف.</li>
-          </ol>
-        </section>
-      </main>
+        <div class="photo-card">
+          <span class="photo-badge">⭐ مميزة</span>
+          <img src="images/photo_2025-11-30_18-01-56.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🏆 إنجازات وطنية</h3>
+            <p>
+              لقطة تخلد الإنجازات العظيمة التي تحققت بفضل الجهود المباركة. شاهد
+              على مسيرة التقدم والازدهار.
+            </p>
+          </div>
+        </div>
 
-      <aside class="sidebar left-sidebar">
-        <h3>تنقل</h3>
-        <ul>
-          <li><a href="index.html">الصفحة الرئيسية</a></li>
-          <li><a href="gallery.html">الذهاب للمعرض</a></li>
-        </ul>
-      </aside>
+        <div class="photo-card">
+          <span class="photo-badge">🌟 رسمية</span>
+          <img src="images/photo_2025-11-30_18-03-12.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🤝 العلاقات الدولية</h3>
+            <p>
+              توثيق للعلاقات الدبلوماسية المتميزة والشراكات الاستراتيجية التي
+              عززت مكانة الدولة على الساحة العالمية.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <span class="photo-badge">🌟 رسمية</span>
+          <img src="images/photo_2025-11-30_18-03-16.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🎯 رؤية مستقبلية</h3>
+            <p>
+              صورة تعكس الرؤية الثاقبة والتخطيط الاستراتيجي لبناء مستقبل مشرق
+              للأجيال القادمة.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <span class="photo-badge">🌟 رسمية</span>
+          <img src="images/photo_2025-11-30_18-03-18.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>💎 التميز والريادة</h3>
+            <p>
+              لحظة تجسد التميز والسعي الدائم نحو الريادة في جميع المجالات. نموذج
+              يحتذى به في العطاء.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <span class="photo-badge">🌟 رسمية</span>
+          <img src="images/photo_2025-11-30_18-03-20.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🌍 على المستوى العالمي</h3>
+            <p>
+              حضور مميز على الساحة الدولية يعكس ثقل الدولة ومكانتها المرموقة بين
+              دول العالم.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <span class="photo-badge">🌟 رسمية</span>
+          <img src="images/photo_2025-11-30_18-03-23.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>❤️ قريب من الشعب</h3>
+            <p>
+              صورة تعكس القرب من المواطنين والاهتمام بهمومهم وتطلعاتهم. قيادة من
+              الشعب وللشعب.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <span class="photo-badge">⭐ مميزة</span>
+          <img src="images/photo_2025-11-30_18-03-26.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🏗️ بناء الوطن</h3>
+            <p>
+              توثيق لمشاريع التنمية والبناء التي غيرت وجه الوطن. إرادة صلبة
+              وعزيمة لا تلين.
+            </p>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <span class="photo-badge">⭐ مميزة</span>
+          <img src="images/photo_2025-11-30_18-03-28.jpg" alt="صورة رسمية" />
+          <div class="photo-info">
+            <h3>🌟 مستقبل واعد</h3>
+            <p>
+              نظرة نحو المستقبل مليئة بالأمل والطموح. قيادة ملهمة ترسم طريق
+              النجاح للأجيال القادمة.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer class="main-footer">
       <p>
-        © <span id="year"></span> - مقالات بإدارة <strong>منضمة اكرم</strong>.
+        © <span id="year"></span> - المعرض الرسمي | <strong>منصة أكرم</strong> -
+        جميع الحقوق محفوظة
       </p>
     </footer>
 
