@@ -20,11 +20,19 @@ function handleAdminLogin(event) {
   const username = document.getElementById("admin-username").value;
   const password = document.getElementById("admin-password").value;
 
+  console.log("Login attempt:", username, password);
+  console.log(
+    "Expected:",
+    ADMIN_CREDENTIALS.username,
+    ADMIN_CREDENTIALS.password
+  );
+
   // التحقق من بيانات الدخول
   if (
     username === ADMIN_CREDENTIALS.username &&
     password === ADMIN_CREDENTIALS.password
   ) {
+    console.log("Login successful!");
     // حفظ الجلسة
     currentAdminUser = username;
     localStorage.setItem(
@@ -671,18 +679,18 @@ function changePassword() {
 
 // ============ Modal ============
 
-let confirmCallback = null;
+let adminConfirmCallback = null;
 
 function showConfirmation(title, message, callback) {
   document.getElementById("confirm-title").textContent = title;
   document.getElementById("confirm-message").textContent = message;
-  confirmCallback = callback;
+  adminConfirmCallback = callback;
   openModal("confirm-modal");
 }
 
 function confirmDelete() {
-  if (confirmCallback) {
-    confirmCallback();
+  if (adminConfirmCallback) {
+    adminConfirmCallback();
   }
   closeModal("confirm-modal");
 }
