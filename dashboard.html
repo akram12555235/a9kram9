@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>لوحة التحكم - المنظمة</title>
+    <title>لوحة التحكم - أبو أديان</title>
     <style>
       * {
         margin: 0;
@@ -12,23 +12,62 @@
       }
 
       :root {
-        --primary: #667eea;
-        --primary-dark: #5a6fd6;
-        --secondary: #764ba2;
-        --success: #28a745;
-        --danger: #dc3545;
-        --warning: #ffc107;
-        --dark: #1a1a2e;
+        --primary: #08f7a3;
+        --primary-dark: #06c485;
+        --secondary: #00e0ff;
+        --accent: #ff6b9d;
+        --success: #00d68f;
+        --danger: #ff4757;
+        --warning: #ffa502;
+        --dark: #0a0a0f;
+        --darker: #050508;
         --light: #f8f9fa;
         --gray: #6c757d;
+        --glass: rgba(8, 247, 163, 0.1);
+        --glass-border: rgba(8, 247, 163, 0.3);
       }
 
       body {
         font-family: "Segoe UI", Tahoma, sans-serif;
-        background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+        background: var(--darker);
         min-height: 100vh;
         direction: rtl;
         color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* خلفية متحركة */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(8, 247, 163, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 224, 255, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(255, 107, 157, 0.03) 0%,
+            transparent 50%
+          );
+        z-index: -1;
+        animation: bgPulse 10s ease-in-out infinite;
+      }
+
+      @keyframes bgPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
       }
 
       /* الشريط الجانبي */
@@ -36,52 +75,124 @@
         position: fixed;
         right: 0;
         top: 0;
-        width: 280px;
+        width: 300px;
         height: 100vh;
-        background: rgba(26, 26, 46, 0.95);
-        border-left: 1px solid rgba(102, 126, 234, 0.3);
+        background: linear-gradient(
+          180deg,
+          rgba(10, 10, 15, 0.98) 0%,
+          rgba(5, 5, 8, 0.99) 100%
+        );
+        border-left: 2px solid var(--glass-border);
         padding: 20px;
         z-index: 1000;
         overflow-y: auto;
-        transition: transform 0.3s;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(20px);
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background: var(--glass-border);
+        border-radius: 10px;
       }
 
       .sidebar-header {
         text-align: center;
         padding-bottom: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--glass-border);
         margin-bottom: 20px;
       }
 
       .sidebar-header .logo {
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin-bottom: 10px;
+        animation: logoFloat 3s ease-in-out infinite;
       }
+
+      @keyframes logoFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
       .sidebar-header h2 {
-        color: var(--primary);
-        font-size: 1.2rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.4rem;
+        font-weight: 800;
       }
 
       .user-card {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border-radius: 15px;
-        padding: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.15),
+          rgba(0, 224, 255, 0.1)
+        );
+        border: 2px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 25px 20px;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .user-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(8, 247, 163, 0.1) 0%,
+          transparent 70%
+        );
+        animation: cardGlow 5s linear infinite;
+      }
+
+      @keyframes cardGlow {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
 
       .user-avatar {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         margin: 0 auto 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 2.5rem;
-        border: 3px solid rgba(255, 255, 255, 0.5);
+        border: 4px solid rgba(255, 255, 255, 0.3);
         overflow: hidden;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 30px rgba(8, 247, 163, 0.3);
+      }
+
+      .user-avatar:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(8, 247, 163, 0.5);
       }
 
       .user-avatar img {
@@ -89,14 +200,55 @@
         height: 100%;
         object-fit: cover;
       }
+
       .user-name {
-        font-size: 1.1rem;
-        font-weight: 600;
+        font-size: 1.3rem;
+        font-weight: 700;
         margin-bottom: 5px;
+        position: relative;
+        z-index: 1;
       }
+
       .user-username {
-        opacity: 0.8;
-        font-size: 0.9rem;
+        color: var(--primary);
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .user-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        padding: 5px 15px;
+        background: rgba(0, 214, 143, 0.2);
+        border: 1px solid var(--success);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: var(--success);
+        position: relative;
+        z-index: 1;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--success);
+        border-radius: 50%;
+        animation: statusPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes statusPulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2);
+        }
       }
 
       .nav-menu {
@@ -104,42 +256,92 @@
       }
 
       .nav-item {
-        margin-bottom: 8px;
+        margin-bottom: 5px;
       }
 
       .nav-link {
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 12px 15px;
-        border-radius: 10px;
-        color: #fff;
+        padding: 14px 18px;
+        border-radius: 12px;
+        color: #d0d0d0;
         text-decoration: none;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
       }
 
-      .nav-link:hover,
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--primary);
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-link:hover {
+        background: var(--glass);
+        border-color: var(--glass-border);
+        color: #fff;
+        transform: translateX(-8px);
+      }
+
+      .nav-link:hover::before {
+        transform: scaleY(1);
+      }
+
       .nav-link.active {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        transform: translateX(-5px);
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.2),
+          rgba(0, 224, 255, 0.1)
+        );
+        border-color: var(--primary);
+        color: var(--primary);
+        box-shadow: 0 0 20px rgba(8, 247, 163, 0.2);
+      }
+
+      .nav-link.active::before {
+        transform: scaleY(1);
       }
 
       .nav-link .icon {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        min-width: 30px;
+        text-align: center;
       }
+
       .nav-link .badge {
         margin-right: auto;
-        background: var(--danger);
-        padding: 2px 8px;
-        border-radius: 10px;
+        background: linear-gradient(135deg, var(--danger), #ff6b6b);
+        padding: 4px 10px;
+        border-radius: 20px;
         font-size: 0.75rem;
+        font-weight: 700;
+        animation: badgePulse 2s ease-in-out infinite;
+      }
+
+      @keyframes badgePulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
       }
 
       /* المحتوى الرئيسي */
       .main-content {
-        margin-right: 280px;
-        padding: 20px;
+        margin-right: 300px;
+        padding: 25px;
         min-height: 100vh;
       }
 
@@ -148,105 +350,212 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        backdrop-filter: blur(10px);
+        padding: 25px 30px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.08),
+          rgba(0, 224, 255, 0.05)
+        );
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
       }
 
       .header h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        background: linear-gradient(135deg, #fff, var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .header h1 .icon {
+        font-size: 2rem;
       }
 
       .header-actions {
         display: flex;
-        gap: 10px;
+        gap: 12px;
       }
 
       .btn {
-        padding: 10px 20px;
+        padding: 12px 24px;
         border: none;
-        border-radius: 8px;
+        border-radius: 12px;
         cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s;
+        font-weight: 700;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
+        font-size: 0.95rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .btn:hover::before {
+        opacity: 1;
       }
 
       .btn-primary {
         background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: #fff;
+        color: var(--dark);
+        box-shadow: 0 4px 15px rgba(8, 247, 163, 0.3);
       }
+
       .btn-danger {
-        background: var(--danger);
+        background: linear-gradient(135deg, var(--danger), #ff6b6b);
         color: #fff;
+        box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
       }
+
       .btn-success {
-        background: var(--success);
-        color: #fff;
+        background: linear-gradient(135deg, var(--success), #00e0a0);
+        color: var(--dark);
+        box-shadow: 0 4px 15px rgba(0, 214, 143, 0.3);
       }
+
       .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      }
+
+      .btn:active {
+        transform: translateY(-1px);
       }
 
       /* البطاقات الإحصائية */
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+        margin-bottom: 35px;
       }
 
       .stat-card {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        padding: 25px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.08),
+          rgba(0, 224, 255, 0.05)
+        );
+        border-radius: 20px;
+        padding: 30px;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s;
+        border: 1px solid var(--glass-border);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
       }
 
       .stat-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-8px);
         border-color: var(--primary);
+        box-shadow: 0 15px 40px rgba(8, 247, 163, 0.15);
+      }
+
+      .stat-card:hover::before {
+        transform: scaleX(1);
       }
 
       .stat-icon {
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin-bottom: 15px;
+        display: inline-block;
+        animation: iconBounce 2s ease-in-out infinite;
       }
+
+      @keyframes iconBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
       .stat-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary);
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
+
       .stat-label {
         color: #aaa;
-        margin-top: 5px;
+        margin-top: 8px;
+        font-size: 1rem;
       }
 
       /* الأقسام */
       .section {
         display: none;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.05),
+          rgba(0, 224, 255, 0.03)
+        );
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(10px);
       }
 
       .section.active {
         display: block;
-        animation: fadeIn 0.3s;
+        animation: sectionFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      @keyframes fadeIn {
+      @keyframes sectionFadeIn {
         from {
           opacity: 0;
-          transform: translateY(10px);
+          transform: translateY(20px);
         }
         to {
           opacity: 1;
@@ -258,16 +567,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--glass-border);
       }
 
       .section-header h2 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
+        background: linear-gradient(135deg, #fff, var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-header h2 .icon {
+        font-size: 1.8rem;
       }
 
       /* الرسائل */
@@ -276,45 +592,81 @@
         overflow-y: auto;
       }
 
-      .message-card {
-        background: rgba(0, 0, 0, 0.2);
+      .message-list::-webkit-scrollbar {
+        width: 6px;
+      }
+      .message-list::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .message-list::-webkit-scrollbar-thumb {
+        background: var(--glass-border);
         border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 10px;
+      }
+
+      .message-card {
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.05),
+          rgba(0, 224, 255, 0.03)
+        );
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 12px;
         border-right: 4px solid var(--primary);
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
+        border: 1px solid var(--glass-border);
+        border-right: 4px solid var(--primary);
       }
 
       .message-card:hover {
-        background: rgba(102, 126, 234, 0.1);
-        transform: translateX(-5px);
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.1),
+          rgba(0, 224, 255, 0.05)
+        );
+        transform: translateX(-8px);
+        box-shadow: 0 5px 20px rgba(8, 247, 163, 0.1);
       }
+
       .message-card.unread {
         border-right-color: var(--warning);
-        background: rgba(255, 193, 7, 0.1);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 165, 2, 0.1),
+          rgba(255, 193, 7, 0.05)
+        );
       }
 
       .message-header {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
+
       .message-sender {
-        font-weight: 600;
+        font-weight: 700;
         color: var(--primary);
+        font-size: 1.05rem;
       }
+
       .message-date {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         color: #888;
+        display: flex;
+        align-items: center;
+        gap: 5px;
       }
+
       .message-subject {
-        font-weight: 500;
-        margin-bottom: 8px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1.05rem;
       }
+
       .message-preview {
         color: #aaa;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -323,87 +675,99 @@
       /* جهات الاتصال */
       .contacts-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
       }
 
       .contact-card {
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        padding: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.05),
+          rgba(0, 224, 255, 0.03)
+        );
+        border-radius: 15px;
+        padding: 25px;
         text-align: center;
-        transition: all 0.3s;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--glass-border);
       }
 
       .contact-card:hover {
         border-color: var(--primary);
-        transform: translateY(-3px);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(8, 247, 163, 0.15);
       }
 
       .contact-avatar {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         background: linear-gradient(135deg, var(--primary), var(--secondary));
         margin: 0 auto 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        box-shadow: 0 5px 20px rgba(8, 247, 163, 0.3);
       }
 
       .contact-name {
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 5px;
+        font-size: 1.1rem;
       }
+
       .contact-username {
-        color: #888;
+        color: var(--primary);
         font-size: 0.9rem;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       /* نموذج إرسال رسالة */
       .compose-form {
-        max-width: 600px;
+        max-width: 700px;
       }
 
       .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
       }
+
       .form-group label {
         display: block;
-        margin-bottom: 8px;
-        color: #aaa;
+        margin-bottom: 10px;
+        color: #ccc;
+        font-weight: 600;
+        font-size: 1rem;
       }
 
       .form-control {
         width: 100%;
-        padding: 12px 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
+        padding: 15px 18px;
+        border: 2px solid var(--glass-border);
+        border-radius: 12px;
         background: rgba(0, 0, 0, 0.3);
         color: #fff;
         font-size: 1rem;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .form-control:focus {
         outline: none;
         border-color: var(--primary);
-        box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 0 20px rgba(8, 247, 163, 0.2);
+        background: rgba(8, 247, 163, 0.05);
       }
 
       textarea.form-control {
-        min-height: 150px;
+        min-height: 180px;
         resize: vertical;
       }
 
       /* البحث */
       .search-box {
         display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
+        gap: 12px;
+        margin-bottom: 25px;
       }
 
       .search-box input {
@@ -411,7 +775,7 @@
       }
 
       .search-results {
-        max-height: 300px;
+        max-height: 350px;
         overflow-y: auto;
       }
 
@@ -419,41 +783,77 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        padding: 10px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
-        margin-bottom: 8px;
+        padding: 15px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.05),
+          rgba(0, 224, 255, 0.03)
+        );
+        border-radius: 12px;
+        margin-bottom: 10px;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--glass-border);
       }
 
       .search-result-item:hover {
-        background: rgba(102, 126, 234, 0.2);
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.1),
+          rgba(0, 224, 255, 0.05)
+        );
+        border-color: var(--primary);
+        transform: translateX(-5px);
       }
 
       /* إعدادات الملف الشخصي */
       .profile-form {
-        max-width: 500px;
+        max-width: 600px;
       }
 
       .profile-image-upload {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 0 auto 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 247, 163, 0.1),
+          rgba(0, 224, 255, 0.05)
+        );
+        margin: 0 auto 25px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        border: 3px dashed rgba(255, 255, 255, 0.3);
-        transition: all 0.3s;
+        border: 3px dashed var(--glass-border);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
+        position: relative;
+      }
+
+      .profile-image-upload::after {
+        content: "📷 اضغط لتغيير الصورة";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .profile-image-upload:hover::after {
+        opacity: 1;
       }
 
       .profile-image-upload:hover {
         border-color: var(--primary);
+        box-shadow: 0 0 30px rgba(8, 247, 163, 0.3);
+        transform: scale(1.05);
       }
+
       .profile-image-upload img {
         width: 100%;
         height: 100%;
@@ -468,81 +868,134 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.9);
         z-index: 2000;
         align-items: center;
         justify-content: center;
+        backdrop-filter: blur(10px);
       }
 
       .modal.show {
         display: flex;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       .modal-content {
-        background: var(--dark);
-        border-radius: 15px;
-        padding: 30px;
-        max-width: 500px;
+        background: linear-gradient(135deg, var(--dark), var(--darker));
+        border-radius: 20px;
+        padding: 35px;
+        max-width: 550px;
         width: 90%;
         max-height: 80vh;
         overflow-y: auto;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 2px solid var(--glass-border);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalSlideIn 0.3s ease;
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          transform: translateY(-30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
 
       .modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .modal-header h3 {
+        background: linear-gradient(135deg, #fff, var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.4rem;
       }
 
       .modal-close {
         background: none;
         border: none;
         color: #fff;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         cursor: pointer;
+        transition: all 0.3s;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 71, 87, 0.2);
+        color: var(--danger);
       }
 
       /* رسائل التنبيه */
       .toast {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
-        padding: 15px 25px;
-        border-radius: 10px;
+        bottom: 30px;
+        left: 30px;
+        padding: 18px 30px;
+        border-radius: 15px;
         color: #fff;
-        font-weight: 500;
+        font-weight: 600;
         z-index: 3000;
-        animation: slideIn 0.3s;
+        animation: toastSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
       }
 
       .toast.success {
-        background: var(--success);
+        background: linear-gradient(135deg, var(--success), #00e0a0);
       }
       .toast.error {
-        background: var(--danger);
+        background: linear-gradient(135deg, var(--danger), #ff6b6b);
       }
       .toast.info {
-        background: var(--primary);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
       }
 
-      @keyframes slideIn {
+      @keyframes toastSlideIn {
         from {
           transform: translateX(-100%);
           opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
         }
       }
 
       /* التحميل */
       .loading {
         text-align: center;
-        padding: 40px;
+        padding: 50px;
         color: #888;
       }
 
       .spinner {
-        width: 40px;
+        width: 50px;
         height: 40px;
         border: 4px solid rgba(255, 255, 255, 0.1);
         border-top-color: var(--primary);
@@ -626,13 +1079,24 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="logo">🏛️</div>
-        <h2>منظمة أكرم</h2>
+        <h2>أبو أديان</h2>
       </div>
 
       <div class="user-card">
-        <div class="user-avatar" id="sidebarAvatar">👤</div>
+        <div
+          class="user-avatar"
+          id="sidebarAvatar"
+          onclick="showSection('profile')"
+          title="اضغط لتغيير الصورة"
+        >
+          👤
+        </div>
         <div class="user-name" id="sidebarName">جارٍ التحميل...</div>
         <div class="user-username" id="sidebarUsername">@...</div>
+        <div class="user-status">
+          <span class="status-dot"></span>
+          متصل الآن
+        </div>
       </div>
 
       <ul class="nav-menu">
@@ -684,10 +1148,10 @@
         style="
           margin-top: auto;
           padding-top: 20px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          border-top: 1px solid var(--glass-border);
         "
       >
-        <a class="nav-link" onclick="logout()" style="color: #ff6b6b">
+        <a class="nav-link" onclick="logout()" style="color: var(--danger)">
           <span class="icon">🚪</span> تسجيل الخروج
         </a>
       </div>
@@ -696,7 +1160,7 @@
     <!-- المحتوى الرئيسي -->
     <main class="main-content">
       <div class="header">
-        <h1 id="pageTitle">🏠 الرئيسية</h1>
+        <h1 id="pageTitle"><span class="icon">🏠</span> الرئيسية</h1>
         <div class="header-actions">
           <button class="btn btn-primary" onclick="showSection('compose')">
             ✉️ رسالة جديدة
@@ -725,6 +1189,16 @@
           <div class="stat-icon">📅</div>
           <div class="stat-number" id="statJoinDate">-</div>
           <div class="stat-label">تاريخ الانضمام</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🆔</div>
+          <div class="stat-number" id="statMemberId">-</div>
+          <div class="stat-label">رقم العضوية</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-number" id="statLevel">عضو</div>
+          <div class="stat-label">المستوى</div>
         </div>
       </div>
 
@@ -868,14 +1342,21 @@
       <!-- قسم الملف الشخصي -->
       <section id="section-profile" class="section">
         <div class="section-header">
-          <h2>⚙️ إعدادات الملف الشخصي</h2>
+          <h2><span class="icon">⚙️</span> إعدادات الملف الشخصي</h2>
         </div>
         <div class="profile-form">
-          <div
-            class="profile-image-upload"
-            onclick="document.getElementById('profileImageInput').click()"
-          >
-            <span id="profileImagePreview">📷</span>
+          <div style="text-align: center; margin-bottom: 30px">
+            <div
+              class="profile-image-upload"
+              onclick="document.getElementById('profileImageInput').click()"
+            >
+              <span id="profileImagePreview">📷</span>
+            </div>
+            <p
+              style="color: var(--primary); font-size: 0.9rem; margin-top: 10px"
+            >
+              اضغط على الصورة لتغييرها
+            </p>
           </div>
           <input
             type="file"
@@ -886,7 +1367,17 @@
           />
 
           <div class="form-group">
-            <label>الاسم الكامل</label>
+            <label>🆔 رقم العضوية</label>
+            <input
+              type="text"
+              class="form-control"
+              id="profileMemberId"
+              readonly
+              style="background: rgba(8, 247, 163, 0.1); cursor: not-allowed"
+            />
+          </div>
+          <div class="form-group">
+            <label>👤 الاسم الكامل</label>
             <input
               type="text"
               class="form-control"
@@ -895,7 +1386,7 @@
             />
           </div>
           <div class="form-group">
-            <label>البريد الإلكتروني</label>
+            <label>📧 البريد الإلكتروني</label>
             <input
               type="email"
               class="form-control"
@@ -904,17 +1395,30 @@
             />
           </div>
           <div class="form-group">
-            <label>النبذة الشخصية</label>
+            <label>📝 النبذة الشخصية</label>
             <textarea
               class="form-control"
               id="profileBio"
               placeholder="اكتب نبذة عنك..."
-              style="min-height: 100px"
+              style="min-height: 120px"
             ></textarea>
           </div>
-          <button class="btn btn-success" onclick="updateProfile()">
-            💾 حفظ التغييرات
-          </button>
+          <div style="display: flex; gap: 15px; flex-wrap: wrap">
+            <button
+              class="btn btn-success"
+              onclick="updateProfile()"
+              style="flex: 1"
+            >
+              💾 حفظ التغييرات
+            </button>
+            <button
+              class="btn btn-primary"
+              onclick="saveProfileImage()"
+              style="flex: 1"
+            >
+              🖼️ حفظ الصورة
+            </button>
+          </div>
         </div>
       </section>
 
@@ -1078,11 +1582,19 @@
             "sidebarUsername"
           ).textContent = `@${currentUser.username}`;
 
-          // صورة الملف الشخصي
-          if (currentUser.profile_image) {
+          // تحميل صورة الملف الشخصي من localStorage أولاً
+          const savedImage = localStorage.getItem(
+            "profileImage_" + currentUser.id
+          );
+          const profileImage = savedImage || currentUser.profile_image;
+
+          if (profileImage) {
             document.getElementById(
               "sidebarAvatar"
-            ).innerHTML = `<img src="${currentUser.profile_image}" alt="">`;
+            ).innerHTML = `<img src="${profileImage}" alt="">`;
+            document.getElementById(
+              "profileImagePreview"
+            ).innerHTML = `<img src="${profileImage}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
           }
 
           // تحديث نموذج الملف الشخصي
@@ -1092,11 +1604,16 @@
             currentUser.email || "";
           document.getElementById("profileBio").value = currentUser.bio || "";
 
-          if (currentUser.profile_image) {
-            document.getElementById(
-              "profileImagePreview"
-            ).innerHTML = `<img src="${currentUser.profile_image}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-          }
+          // رقم العضوية
+          const memberId = currentUser.id
+            ? `#${String(currentUser.id).padStart(5, "0")}`
+            : "-";
+          document.getElementById("profileMemberId").value = memberId;
+          document.getElementById("statMemberId").textContent = memberId;
+
+          // مستوى العضوية
+          const level = currentUser.is_admin ? "مدير" : "عضو";
+          document.getElementById("statLevel").textContent = level;
 
           // تاريخ الانضمام
           if (currentUser.created_at) {
@@ -1111,6 +1628,51 @@
           console.error(e);
           showToast("فشل تحميل الملف الشخصي", "error");
         }
+      }
+
+      // ========== حفظ صورة الملف الشخصي ==========
+      let pendingProfileImage = null;
+
+      function previewProfileImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // التحقق من حجم الملف (أقصى 2MB)
+        if (file.size > 2 * 1024 * 1024) {
+          showToast("حجم الصورة كبير جداً! الحد الأقصى 2MB", "error");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          pendingProfileImage = e.target.result;
+          document.getElementById(
+            "profileImagePreview"
+          ).innerHTML = `<img src="${e.target.result}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+          showToast("تم تحميل الصورة! اضغط 'حفظ الصورة' لحفظها", "info");
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function saveProfileImage() {
+        if (!pendingProfileImage) {
+          showToast("لم يتم اختيار صورة جديدة", "error");
+          return;
+        }
+
+        // حفظ الصورة في localStorage
+        localStorage.setItem(
+          "profileImage_" + currentUser.id,
+          pendingProfileImage
+        );
+
+        // تحديث الصورة في الشريط الجانبي
+        document.getElementById(
+          "sidebarAvatar"
+        ).innerHTML = `<img src="${pendingProfileImage}" alt="">`;
+
+        pendingProfileImage = null;
+        showToast("✅ تم حفظ الصورة بنجاح!", "success");
       }
 
       // ========== الرسائل الواردة ==========
@@ -1497,27 +2059,30 @@
         }
       }
 
-      // ========== الملف الشخصي ==========
-      function previewProfileImage(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById(
-            "profileImagePreview"
-          ).innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-        };
-        reader.readAsDataURL(file);
-      }
-
+      // ========== تحديث الملف الشخصي ==========
       async function updateProfile() {
         showToast("جارٍ حفظ التغييرات...", "info");
 
-        // ملاحظة: API تحديث الملف الشخصي قد لا يكون موجوداً - نعرض رسالة نجاح
+        // حفظ البيانات في localStorage
+        const profileData = {
+          full_name: document.getElementById("profileFullName").value,
+          email: document.getElementById("profileEmail").value,
+          bio: document.getElementById("profileBio").value,
+        };
+        localStorage.setItem(
+          "profileData_" + currentUser.id,
+          JSON.stringify(profileData)
+        );
+
+        // تحديث الاسم في الشريط الجانبي
+        if (profileData.full_name) {
+          document.getElementById("sidebarName").textContent =
+            profileData.full_name;
+        }
+
         setTimeout(() => {
-          showToast("✅ تم حفظ التغييرات", "success");
-        }, 1000);
+          showToast("✅ تم حفظ التغييرات بنجاح!", "success");
+        }, 500);
       }
 
       // ========== إضافة جهة اتصال ==========
