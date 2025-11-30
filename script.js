@@ -695,7 +695,7 @@ document.addEventListener("keydown", async (e) => {
 });
 
 // ===== Profile Widget =====
-const API_URL = "https://admin999.pythonanywhere.com/api";
+const API_URL = "https://akram-organization-production.up.railway.app/api";
 
 function loadUserProfile() {
   const token = localStorage.getItem("token");
