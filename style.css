@@ -789,6 +789,76 @@ body.fullscreen-mode .main-header {
   font-weight: 500;
 }
 
+/* الصور المميزة */
+.featured-item {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.15),
+    rgba(8, 247, 163, 0.1)
+  ) !important;
+  border: 2px solid rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+}
+
+.featured-item:hover {
+  border-color: rgba(255, 215, 0, 0.9) !important;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.4), 0 0 80px rgba(8, 247, 163, 0.2);
+  transform: translateY(-10px) scale(1.03);
+}
+
+.featured-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #000;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 3px 15px rgba(255, 215, 0, 0.5);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 3px 15px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.7);
+  }
+}
+
+.featured-item figcaption {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+  padding: 1rem;
+  text-align: center;
+}
+
+.featured-item figcaption strong {
+  display: block;
+  font-size: 1rem;
+  color: #ffd700;
+  margin-bottom: 5px;
+}
+
+.img-description {
+  display: block;
+  font-size: 0.8rem;
+  color: #aaa;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.featured-item img {
+  height: 220px;
+}
+
 /* نموذج التواصل */
 .contact-form {
   margin-top: 0.8rem;

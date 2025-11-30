@@ -102,48 +102,66 @@ function buildDynamicGallery() {
   const container = document.getElementById("gallery-grid");
   if (!container) return;
 
-  const imageExtensions = [".gif", ".jpg", ".jpeg", ".png", ".webp", ".jfif"];
+  // الصور المميزة مع عناوين وأوصاف احترافية
+  const featuredImages = [
+    {
+      src: "images/photo_2025-11-30_18-01-53.jpg",
+      title: "🏛️ صرح الدولة العظيم",
+      description: "رمز القوة والسيادة - عظمة لا تُضاهى",
+    },
+    {
+      src: "images/photo_2025-11-30_18-01-56.jpg",
+      title: "⚔️ حارس الوطن",
+      description: "الشجاعة المتجسدة - فخر الأمة ودرعها الحصين",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-12.jpg",
+      title: "🦅 نسر السماء",
+      description: "عيون ترصد المجد - حامي حمى الديار",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-16.jpg",
+      title: "🎖️ بطل الأبطال",
+      description: "أسطورة حية - يُروى عنه في كل مكان",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-18.jpg",
+      title: "🏆 قائد المجد",
+      description: "من صنع التاريخ بيديه - ملهم الأجيال",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-20.jpg",
+      title: "👑 تاج الفخر",
+      description: "إرث الأجداد العظام - مجد لا ينتهي",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-23.jpg",
+      title: "🌟 نجم الأمة",
+      description: "إشراقة أمل - ضياء يُنير الدرب",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-26.jpg",
+      title: "🔱 رمز العزة",
+      description: "شموخ لا يُحنى - كبرياء الوطن",
+    },
+    {
+      src: "images/photo_2025-11-30_18-03-28.jpg",
+      title: "⭐ أيقونة الشرف",
+      description: "مَن كتب اسمه بحروف من ذهب في سجل الخالدين",
+    },
+  ];
+
   const imageFilenames = [
-    "admin.gif",
     "akram.gif",
     "akram55.gif",
     "animated1.gif",
-    "animated2.gif",
-    "animated3.gif",
-    "animated4.gif",
-    "animated5.gif",
-    "animated6.gif",
-    "animated7.gif",
-    "animated8.gif",
-    "animated9.gif",
-    "animated10.gif",
-    "animated11.gif",
-    "animated12.gif",
     "animated13.gif",
-    "animated14.gif",
-    "animated15.gif",
-    "animated16.gif",
-    "animated17.gif",
-    "animated18.gif",
-    "animated19.gif",
-    "animated20.gif",
-    "animated21.gif",
-    "animated22.gif",
-    "animated23.gif",
-    "animated24.gif",
-    "animated25.gif",
-    "animated26.gif",
-    "animated27.gif",
-    "animated28.gif",
     "animated29.gif",
-    "animated30.gif",
     "army.gif",
     "cia.gif",
-    "city.jfif",
     "gangs.gif",
     "health.gif",
     "heros.gif",
-    "location.gif",
     "Menu.gif",
     "Ministry of Justice.gif",
     "mod.gif",
@@ -152,26 +170,53 @@ function buildDynamicGallery() {
     "verifed.gif",
   ];
 
-  const images = imageFilenames.map((name) => ({
+  // دمج الصور المميزة مع الصور الأخرى
+  const regularImages = imageFilenames.map((name) => ({
     src: "images/" + name,
-    alt: name.replace(/\.[^.]+$/, ""),
+    title: name.replace(/\.[^.]+$/, ""),
+    description: "",
   }));
 
+  const allImages = [...featuredImages, ...regularImages];
+
   if (window.lightbox) {
-    window.lightbox.setImages(images);
+    window.lightbox.setImages(
+      allImages.map((img) => ({ src: img.src, alt: img.title }))
+    );
   }
 
   container.innerHTML = "";
-  images.forEach((img, idx) => {
+
+  // إضافة الصور المميزة أولاً بتصميم خاص
+  featuredImages.forEach((img, idx) => {
+    const figure = document.createElement("figure");
+    figure.className = "gallery-item featured-item";
+    figure.style.cursor = "pointer";
+    figure.innerHTML = `
+      <div class="featured-badge">⭐ مميز</div>
+      <img src="${img.src}" alt="${img.title}" loading="lazy" />
+      <figcaption>
+        <strong>${img.title}</strong>
+        <span class="img-description">${img.description}</span>
+      </figcaption>
+    `;
+    figure.addEventListener("click", () => {
+      if (window.lightbox) window.lightbox.open(idx);
+    });
+    container.appendChild(figure);
+  });
+
+  // إضافة الصور العادية
+  regularImages.forEach((img, idx) => {
     const figure = document.createElement("figure");
     figure.className = "gallery-item";
     figure.style.cursor = "pointer";
     figure.innerHTML = `
-      <img src="${img.src}" alt="${img.alt}" loading="lazy" />
-      <figcaption>${img.alt}</figcaption>
+      <img src="${img.src}" alt="${img.title}" loading="lazy" />
+      <figcaption>${img.title}</figcaption>
     `;
     figure.addEventListener("click", () => {
-      if (window.lightbox) window.lightbox.open(idx);
+      if (window.lightbox) window.lightbox.open(featuredImages.length + idx);
     });
     container.appendChild(figure);
   });
