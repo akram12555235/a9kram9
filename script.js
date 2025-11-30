@@ -816,38 +816,54 @@ function displayUserProfile(user) {
     return;
   }
 
-  const avatarEmoji = user.full_name ? user.full_name.charAt(0) : "👤";
+  // التحقق من وجود البيانات وتعيين قيم افتراضية
+  const fullName = user.full_name || user.username || "مستخدم";
+  const username = user.username || "guest";
+  const email = user.email || "غير محدد";
+  const bio = user.bio || "لا توجد نبذة";
+  const avatarEmoji = fullName.charAt(0) || "👤";
+
+  // معالجة التاريخ بشكل آمن
+  let joinDate = "غير محدد";
+  if (user.created_at) {
+    try {
+      const date = new Date(user.created_at);
+      if (!isNaN(date.getTime())) {
+        joinDate = date.toLocaleDateString("ar-SA");
+      }
+    } catch (e) {
+      joinDate = "غير محدد";
+    }
+  }
 
   let profileHTML = `
     <div class="profile-header">
       <div class="profile-avatar">
         ${
           user.profile_image && user.profile_image.startsWith("data:")
-            ? `<img src="${user.profile_image}" alt="${user.full_name}">`
+            ? `<img src="${user.profile_image}" alt="${fullName}">`
             : avatarEmoji
         }
       </div>
-      <div class="profile-name">${user.full_name || user.username}</div>
-      <div class="profile-username">@${user.username}</div>
+      <div class="profile-name">${fullName}</div>
+      <div class="profile-username">@${username}</div>
       <div class="profile-status">✓ نشط الآن</div>
     </div>
 
     <div class="profile-info">
       <div class="info-item">
         <div class="info-label">📧 البريد</div>
-        <div class="info-value email">${user.email}</div>
+        <div class="info-value email">${email}</div>
       </div>
 
       <div class="info-item">
         <div class="info-label">📝 النبذة</div>
-        <div class="info-value">${user.bio || "لا توجد نبذة"}</div>
+        <div class="info-value">${bio}</div>
       </div>
 
       <div class="info-item">
         <div class="info-label">📅 الانضمام</div>
-        <div class="info-value">${new Date(user.created_at).toLocaleDateString(
-          "ar-SA"
-        )}</div>
+        <div class="info-value">${joinDate}</div>
       </div>
     </div>
 
@@ -862,7 +878,7 @@ function displayUserProfile(user) {
   `;
 
   profileContent.innerHTML = profileHTML;
-  console.log("Profile displayed:", user.username);
+  console.log("Profile displayed:", username);
 }
 
 function logoutUser() {
