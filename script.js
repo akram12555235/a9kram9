@@ -884,6 +884,14 @@ function initProfileWidget() {
   console.log("- profileContent:", profileContent ? "✅" : "❌");
 
   if (!profileToggle || !profileMenu) {
+    // لا نحتاج الـ profile widget في صفحات المعرض والأخبار
+    if (
+      window.location.pathname.includes("gallery") ||
+      window.location.pathname.includes("news")
+    ) {
+      console.log("📍 Profile widget not needed on this page");
+      return;
+    }
     console.warn("⚠️ Profile elements not found - will retry in 500ms");
     setTimeout(initProfileWidget, 500);
     return;
