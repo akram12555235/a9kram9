@@ -761,8 +761,8 @@ function escapeHtml(text) {
 
 // ============ أنماط إضافية ============
 
-const style = document.createElement("style");
-style.textContent = `
+const adminPanelStyle = document.createElement("style");
+adminPanelStyle.textContent = `
   @keyframes slideIn {
     from {
       transform: translateX(400px);
@@ -862,7 +862,7 @@ style.textContent = `
     flex-wrap: wrap;
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(adminPanelStyle);
 
 // ============ إدارة الأعضاء ============
 

@@ -246,6 +246,9 @@ function loadMessages(filter = "all") {
   const messages = MessageStorage.filterMessages(filter);
   const messagesList = document.getElementById("messages-list");
 
+  // تحقق من وجود العنصر قبل التعديل
+  if (!messagesList) return;
+
   if (messages.length === 0) {
     messagesList.innerHTML =
       '<p class="empty-message">لا توجد رسائل محفوظة</p>';
