@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>📰 الأخبار والمعلومات - منصة اكرم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="news.css" />
+  </head>
+  <body class="news-page">
+    <div class="noise-overlay"></div>
+
+    <!-- خلفية تكنولوجية متحركة -->
+    <div class="particles-background" id="particles-bg"></div>
+    <div class="animated-gradient-bg"></div>
+
+    <header class="main-header">
+      <div class="logo">
+        <span class="logo-main">🖤 الوائ الأسود 🖤</span>
+        <span class="logo-sub">منصة المعرفة والتاريخ والحقائق</span>
+      </div>
+      <nav class="top-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عن الموقع</a>
+        <a href="news.html" class="active">الأخبار</a>
+        <a href="gallery.html">المعرض</a>
+        <a href="articles.html">المقالات</a>
+        <a href="contact.html">تواصل</a>
+        <button
+          id="toggle-bg-btn"
+          class="btn-toggle-bg"
+          title="تشغيل/إيقاف الخلفية"
+        >
+          🔆
+        </button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar right-sidebar">
+        <h3>📚 الفئات</h3>
+        <ul>
+          <li><a href="#masonic">الماسونية</a></li>
+          <li><a href="#hackers">عالم الهاكرز</a></li>
+          <li><a href="#ottoman">الدولة العثمانية</a></li>
+          <li><a href="#iraq">حضارة العراق القديمة</a></li>
+          <li><a href="#mission">مهمتنا</a></li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <!-- Hero Section للأخبار -->
+        <section class="news-hero-modern">
+          <div class="news-hero-overlay"></div>
+          <div class="news-hero-content">
+            <div class="hero-badge-modern">
+              <span class="badge-icon">📰</span>
+              <span class="badge-text">آخر الأخبار والتحديثات</span>
+            </div>
+            <h1 class="news-hero-title">
+              <span class="title-line">مركز</span>
+              <span class="title-highlight">الأخبار والمعلومات</span>
+            </h1>
+            <p class="news-hero-description">
+              منصة معرفية متخصصة في جمع المعلومات والحقائق التاريخية عن الحضارات
+              والحركات العالمية
+            </p>
+            <div class="hero-stats-modern">
+              <div class="stat-item-modern">
+                <span class="stat-icon-modern">📚</span>
+                <span class="stat-value-modern">50+</span>
+                <span class="stat-text-modern">مقال</span>
+              </div>
+              <div class="stat-item-modern">
+                <span class="stat-icon-modern">🌍</span>
+                <span class="stat-value-modern">10+</span>
+                <span class="stat-text-modern">موضوع</span>
+              </div>
+              <div class="stat-item-modern">
+                <span class="stat-icon-modern">⚡</span>
+                <span class="stat-value-modern">100%</span>
+                <span class="stat-text-modern">موثوق</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-decoration-modern">
+            <div class="deco-circle-modern circle-1"></div>
+            <div class="deco-circle-modern circle-2"></div>
+            <div class="deco-circle-modern circle-3"></div>
+          </div>
+        </section>
+
+        <!-- قسم الماسونية -->
+        <section id="masonic" class="news-section">
+          <div class="section-header">
+            <h2>🔺 الماسونية: التاريخ والحقائق</h2>
+            <span class="section-icon">🏛️</span>
+          </div>
+
+          <div class="news-cards">
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/animated1.gif" alt="الماسونية" />
+              </div>
+              <div class="card-header">
+                <h3>نشأة الماسونية</h3>
+                <span class="card-date">📅 القرن 17 الميلادي</span>
+              </div>
+              <div class="card-content">
+                <p>
+                  <strong>الماسونية</strong> حركة فكرية نشأت في بريطانيا، تجمع
+                  بين الفلسفة والعمارة والحكمة القديمة. بدأت كنقابة للبنائين ثم
+                  تطورت إلى منظمة فكرية عالمية.
+                </p>
+                <ul>
+                  <li>🏗️ أصول: اتحادات البنائين الأوروبيين</li>
+                  <li>📖 الفلسفة: البحث عن الحقيقة والمعرفة</li>
+                  <li>🌍 الانتشار: موجودة في أكثر من 100 دولة</li>
+                  <li>⚙️ الرموز: الهندسة والرياضيات والعمارة</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/heros.gif" alt="الرموز الماسونية" />
+              </div>
+              <div class="card-header">
+                <h3>الرموز الماسونية</h3>
+                <span class="card-date">📅 تاريخ عريق</span>
+              </div>
+              <div class="card-content">
+                <p>الرموز الماسونية تمثل مبادئ فلسفية وهندسية عميقة:</p>
+                <ul>
+                  <li>◻️ المربع: الاستقرار والأساس الصلب</li>
+                  <li>△ المثلث: الحكمة والتقدم</li>
+                  <li>⊙ الدائرة: الكمال والأزلية</li>
+                  <li>✦ النجم: الضوء والمعرفة</li>
+                  <li>📐 الزاوية والمسطرة: الدقة والعدل</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/giphy.gif" alt="التأثير العالمي" />
+              </div>
+              <div class="card-header">
+                <h3>التأثير العالمي</h3>
+                <span class="card-date">📅 حتى يومنا</span>
+              </div>
+              <div class="card-content">
+                <p>للماسونية تأثير عميق على الثقافة والعمارة والفكر العالمي:</p>
+                <ul>
+                  <li>🏛️ العمارة: المباني الشهيرة حول العالم</li>
+                  <li>🎨 الفن: الرموز والرسومات المشهورة</li>
+                  <li>📚 الفكر: التأثير على الفلاسفة والمفكرين</li>
+                  <li>🌐 الشبكات العالمية: الاتصالات والتعاون</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- قسم الهاكرز -->
+        <section id="hackers" class="news-section">
+          <div class="section-header">
+            <h2>💻 عالم الهاكرز: المجتمع الرقمي</h2>
+            <span class="section-icon">🔓</span>
+          </div>
+
+          <div class="news-cards">
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/cia.gif" alt="من هم الهاكرز" />
+              </div>
+              <div class="card-header">
+                <h3>من هم الهاكرز؟</h3>
+                <span class="card-date">📅 حقبة المعلومات</span>
+              </div>
+              <div class="card-content">
+                <p>
+                  الهاكرز هم محترفو التقنية الذين يسعون لفهم وتحسين الأنظمة
+                  الرقمية. ليسوا جميعاً مجرمين، بل معظمهم متخصصون في الأمن
+                  السيبراني.
+                </p>
+                <ul>
+                  <li>🧑‍💻 النوع الأول: White Hat - يعملون لحماية الأنظمة</li>
+                  <li>
+                    🔴 النوع الثاني: Black Hat - يستخدمون مهاراتهم بشكل سلبي
+                  </li>
+                  <li>⚫ النوع الثالث: Gray Hat - محايدون ومستقلون</li>
+                  <li>🛡️ النوع الرابع: Ethical Hackers - متخصصون الأمن</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/Server.gif" alt="ثقافة الهاكرز" />
+              </div>
+              <div class="card-header">
+                <h3>ثقافة الهاكرز</h3>
+                <span class="card-date">📅 من الستينيات حتى الآن</span>
+              </div>
+              <div class="card-content">
+                <p>ثقافة غنية من الابتكار والاستكشاف التقني:</p>
+                <ul>
+                  <li>🖥️ البرمجة: لغات وأدوات قوية</li>
+                  <li>🔐 الأمان: حماية المعلومات والخصوصية</li>
+                  <li>🌐 الشبكات: فهم الاتصالات الرقمية</li>
+                  <li>🧠 الابتكار: تطوير تقنيات جديدة</li>
+                  <li>📡 المجتمع: التعاون والتشارك المعرفي</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/health.gif" alt="التأثير على المجتمع" />
+              </div>
+              <div class="card-header">
+                <h3>التأثير على المجتمع</h3>
+                <span class="card-date">📅 مستقبل التقنية</span>
+              </div>
+              <div class="card-content">
+                <p>
+                  الهاكرز يلعبون دوراً محورياً في تطور التقنية والأمن السيبراني:
+                </p>
+                <ul>
+                  <li>🔒 تحسين الأمان: اكتشاف الثغرات وإصلاحها</li>
+                  <li>🚀 الابتكار: تطوير تقنيات جديدة</li>
+                  <li>🎓 التعليم: نشر المعرفة التقنية</li>
+                  <li>🛡️ الحماية: الدفاع عن الخصوصية الرقمية</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- قسم الدولة العثمانية -->
+        <section id="ottoman" class="news-section">
+          <div class="section-header">
+            <h2>🏛️ الدولة العثمانية: إمبراطورية التاريخ</h2>
+            <span class="section-icon">⚔️</span>
+          </div>
+
+          <div class="news-cards">
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/army.gif" alt="نشأة الدولة العثمانية" />
+              </div>
+              <div class="card-header">
+                <h3>نشأة الدولة العثمانية</h3>
+                <span class="card-date">📅 1299 - 1453 م</span>
+              </div>
+              <div class="card-content">
+                <p>
+                  الدولة العثمانية بدأت كإمارة صغيرة في الأناضول لتصبح إحدى أعظم
+                  الإمبراطوريات في التاريخ.
+                </p>
+                <ul>
+                  <li>👑 المؤسس: عثمان بك بن أرطغرل</li>
+                  <li>📍 العاصمة: بورصة ثم أدرنة ثم اسطنبول</li>
+                  <li>🗺️ الامتداد: من البلقان إلى شمال أفريقيا</li>
+                  <li>⏱️ المدة: 623 سنة (أطول الإمبراطوريات الإسلامية)</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/gangs.gif" alt="الإنجازات العثمانية" />
+              </div>
+              <div class="card-header">
+                <h3>الإنجازات والحضارة</h3>
+                <span class="card-date">📅 الذروة الحضارية</span>
+              </div>
+              <div class="card-content">
+                <p>تركت الدولة العثمانية إرثاً حضارياً عظيماً:</p>
+                <ul>
+                  <li>🕌 العمارة: المساجد والقصور والحصون</li>
+                  <li>📚 الفن: الخط والزخرفة والرسم</li>
+                  <li>🎓 العلم: الطب والفلك والرياضيات</li>
+                  <li>🛣️ البنية: الطرق والجسور والمدن</li>
+                  <li>📖 الأدب: الشعر والقصص والمخطوطات</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/location.gif" alt="التأثير الثقافي العثماني" />
+              </div>
+              <div class="card-header">
+                <h3>التأثير الثقافي المتبقي</h3>
+                <span class="card-date">📅 إرث حي</span>
+              </div>
+              <div class="card-content">
+                <p>تأثير الدولة العثمانية لا يزال حياً في الثقافة والعمارة:</p>
+                <ul>
+                  <li>🏛️ معالم عمرانية شهيرة</li>
+                  <li>🍜 الطعام والمأكولات التقليدية</li>
+                  <li>👗 الملابس والعادات الشرقية</li>
+                  <li>🎵 الموسيقى والفنون</li>
+                  <li>🗣️ اللغة والعبارات الشهيرة</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- قسم العراق القديم -->
+        <section id="iraq" class="news-section">
+          <div class="section-header">
+            <h2>🏺 حضارة العراق القديمة: مهد الحضارة</h2>
+            <span class="section-icon">👑</span>
+          </div>
+
+          <div class="news-cards">
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/animated13.gif" alt="العراق القديم" />
+              </div>
+              <div class="card-header">
+                <h3>أقدم الحضارات</h3>
+                <span class="card-date">📅 5000 - 2000 ق.م</span>
+              </div>
+              <div class="card-content">
+                <p>
+                  العراق القديم (بلاد الرافدين) هو مهد أقدم الحضارات البشرية:
+                </p>
+                <ul>
+                  <li>🏙️ السومريون: أول حضارة منظمة (3500 ق.م)</li>
+                  <li>⚡ البابليون: صُنّاع القوانين والعلماء</li>
+                  <li>🔫 الآشوريون: إمبراطورية عسكرية عظمى</li>
+                  <li>🌊 الكلدانيون: الفلكيون والعلماء</li>
+                  <li>📜 الكتابة: اختراع الكتابة المسمارية</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img
+                  src="images/giphy (1).gif"
+                  alt="الحضارة الإنجازات العراقية"
+                />
+              </div>
+              <div class="card-header">
+                <h3>الإنجازات العلمية والثقافية</h3>
+                <span class="card-date">📅 العصر الذهبي</span>
+              </div>
+              <div class="card-content">
+                <p>حقق العراق القديم إنجازات علمية وثقافية لا تُقدّر بثمن:</p>
+                <ul>
+                  <li>🔢 الرياضيات: الهندسة والجبر والفلك</li>
+                  <li>⚗️ العلوم: الكيمياء والطب</li>
+                  <li>📚 الأدب: الملاحم والشعر (ملحمة جلجامش)</li>
+                  <li>🏛️ المعمار: الأبراج والقصور والحدائق المعلقة</li>
+                  <li>📜 القانون: قانون حمورابي (أول قانون مدون)</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="card-image">
+                <img src="images/akram.gif" alt="التأثير على البشرية" />
+              </div>
+              <div class="card-header">
+                <h3>التأثير على البشرية</h3>
+                <span class="card-date">📅 الإرث الأبدي</span>
+              </div>
+              <div class="card-content">
+                <p>العراق القديم أسس أساسات الحضارة الإنسانية الحديثة:</p>
+                <ul>
+                  <li>✍️ الكتابة: أساس المعرفة</li>
+                  <li>⚖️ القانون: أساس النظام الاجتماعي</li>
+                  <li>🔬 العلم: أساس البحث العلمي</li>
+                  <li>🏗️ العمارة: أساس البناء والعمران</li>
+                  <li>🌍 الحضارة: أساس كل الحضارات اللاحقة</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- قسم المهمة -->
+        <section id="mission" class="card mission-section">
+          <h2>🎯 لماذا تأسست منظمة الوائ الأسود؟</h2>
+
+          <div class="mission-content">
+            <div class="mission-item">
+              <div class="mission-image">
+                <img src="images/mod.gif" alt="البحث عن الحقيقة" />
+              </div>
+              <span class="mission-icon">🔍</span>
+              <h3>البحث عن الحقيقة</h3>
+              <p>
+                نسعى للبحث العميق عن الحقائق التاريخية والعلمية بدون تحيز أو
+                تضليل. نجمع المعلومات من مصادر موثوقة ونحللها بعناية.
+              </p>
+            </div>
+
+            <div class="mission-item">
+              <div class="mission-image">
+                <img src="images/verifed.gif" alt="نشر المعرفة" />
+              </div>
+              <span class="mission-icon">📚</span>
+              <h3>نشر المعرفة</h3>
+              <p>
+                نؤمن بأن المعرفة حق للجميع. نعمل على نشر المعلومات الصحيحة
+                بطريقة سهلة وممتعة لجميع الفئات والعمر.
+              </p>
+            </div>
+
+            <div class="mission-item">
+              <div class="mission-image">
+                <img src="images/akram55.gif" alt="بناء المجتمع" />
+              </div>
+              <span class="mission-icon">🤝</span>
+              <h3>بناء المجتمع</h3>
+              <p>
+                نؤمن أن المعرفة المشتركة تقوي المجتمع. نعمل على بناء مجتمع واعٍ
+                متنور يقدر التاريخ والحضارة.
+              </p>
+            </div>
+
+            <div class="mission-item">
+              <div class="mission-image">
+                <img src="images/swat1.gif" alt="حماية التراث" />
+              </div>
+              <span class="mission-icon">🛡️</span>
+              <h3>حماية التراث</h3>
+              <p>
+                نسعى لحماية التراث الحضاري والثقافي من الضياع. نوثق المعلومات
+                والحقائق للأجيال القادمة.
+              </p>
+            </div>
+
+            <div class="mission-item">
+              <div class="mission-image">
+                <img src="images/giphy (2).gif" alt="التبادل الثقافي" />
+              </div>
+              <span class="mission-icon">🌐</span>
+              <h3>التبادل الثقافي</h3>
+              <p>
+                نؤمن بأهمية التبادل الثقافي والحوار الحضاري. نعمل على تقريب
+                الحضارات والثقافات المختلفة.
+              </p>
+            </div>
+
+            <div class="mission-item">
+              <div class="mission-image">
+                <img src="images/giphy (3).gif" alt="الابتكار والتطور" />
+              </div>
+              <span class="mission-icon">⚡</span>
+              <h3>الابتكار والتطور</h3>
+              <p>
+                نستخدم التقنية الحديثة والابتكار لنشر المعرفة. نجمع بين الحكمة
+                القديمة والتقنية الحديثة.
+              </p>
+            </div>
+          </div>
+
+          <div class="mission-footer">
+            <h3>🖤 شعارنا: "المعرفة هي القوة، والحقيقة هي الضوء"</h3>
+            <p>
+              نحن الوائ الأسود - منظمة معرفية تسعى لإضاءة الحقائق وكشف الغموض
+              وبناء مستقبل أفضل قائم على الوعي والفهم الحقيقي.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar left-sidebar">
+        <h3>🔗 روابط مهمة</h3>
+        <ul>
+          <li><a href="index.html">العودة للرئيسية</a></li>
+          <li><a href="gallery.html">معرض الصور</a></li>
+          <li><a href="articles.html">المقالات الكاملة</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="admin.html">📬 لوحة الرسائل</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="main-footer">
+      <p>
+        © <span id="year"></span> - الوائ الأسود | منصة المعرفة والحقائق |
+        <strong>🖤 نشر الوعي والمعرفة 🖤</strong>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // إنشاء جزيئات متحركة للأخبار
+      function createNewsParticles() {
+        const particlesContainer = document.getElementById("particles-bg");
+        if (!particlesContainer) return;
+
+        const particleCount = 40;
+        const colors = ["#08f7a3", "#00e0ff", "#00ffc8"];
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          const size = Math.random() * 4 + 2;
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: ${color};
+            border-radius: 50%;
+            left: ${x}%;
+            top: ${y}%;
+            opacity: ${Math.random() * 0.5 + 0.2};
+            animation: particleFloat ${duration}s ${delay}s infinite ease-in-out;
+            box-shadow: 0 0 10px ${color};
+          `;
+
+          particlesContainer.appendChild(particle);
+        }
+
+        // Add CSS animation
+        if (!document.getElementById("particle-animation-news")) {
+          const style = document.createElement("style");
+          style.id = "particle-animation-news";
+          style.textContent = `
+            @keyframes particleFloat {
+              0%, 100% {
+                transform: translate(0, 0);
+              }
+              25% {
+                transform: translate(20px, -30px);
+              }
+              50% {
+                transform: translate(-15px, -60px);
+              }
+              75% {
+                transform: translate(25px, -30px);
+              }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      }
+
+      // تشغيل عند تحميل الصفحة
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", createNewsParticles);
+      } else {
+        createNewsParticles();
+      }
+    </script>
+  </body>
+</html>

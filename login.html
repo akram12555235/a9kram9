@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔐 تسجيل الدخول - منصة اكرم</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #000;
+        min-height: 100vh;
+        display: flex;
+        direction: rtl;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* خلفية تكنولوجية متحركة */
+      .tech-background {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #0a0a0a 50%,
+          #001a1a 100%
+        );
+      }
+
+      /* شبكة متحركة */
+      .grid-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background-image: linear-gradient(
+            rgba(8, 247, 163, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(8, 247, 163, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+        opacity: 0.3;
+      }
+
+      @keyframes gridMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
+      }
+
+      /* جزيئات متحركة */
+      .particles {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      /* دوائر متوهجة */
+      .glow-circles {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .glow-circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.15;
+        animation: glowFloat 15s ease-in-out infinite;
+      }
+
+      .glow-circle-1 {
+        width: 400px;
+        height: 400px;
+        background: #08f7a3;
+        top: -200px;
+        left: -200px;
+        animation-delay: 0s;
+      }
+
+      .glow-circle-2 {
+        width: 500px;
+        height: 500px;
+        background: #00e0ff;
+        bottom: -250px;
+        right: -250px;
+        animation-delay: 5s;
+      }
+
+      .glow-circle-3 {
+        width: 350px;
+        height: 350px;
+        background: #00ffc8;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: 10s;
+      }
+
+      @keyframes glowFloat {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(50px, -50px) scale(1.1);
+        }
+        66% {
+          transform: translate(-50px, 50px) scale(0.9);
+        }
+      }
+
+      /* خطوط رقمية متحركة */
+      .digital-lines {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .digital-line {
+        position: absolute;
+        width: 2px;
+        height: 100px;
+        background: linear-gradient(180deg, transparent, #08f7a3, transparent);
+        animation: lineMove 3s linear infinite;
+        opacity: 0.5;
+      }
+
+      @keyframes lineMove {
+        0% {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      .website-section {
+        flex: 1;
+        padding: 50px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        position: relative;
+        z-index: 10;
+      }
+
+      .website-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        display: inline-block;
+        animation: iconPulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 30px rgba(8, 247, 163, 0.6));
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .website-section h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #08f7a3, #00e0ff, #08f7a3);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientText 3s ease infinite, slideRight 0.8s ease-out;
+      }
+
+      @keyframes gradientText {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .website-section .tagline {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: #a0a0a0;
+        font-weight: 400;
+        animation: slideRight 0.8s ease-out 0.1s both;
+      }
+
+      @keyframes slideRight {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .features-list {
+        list-style: none;
+        margin-bottom: 35px;
+      }
+
+      .features-list li {
+        padding: 12px 20px;
+        font-size: 15px;
+        color: #d0d0d0;
+        background: rgba(8, 247, 163, 0.05);
+        border: 1px solid rgba(8, 247, 163, 0.2);
+        border-radius: 10px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        animation: slideRight 0.8s ease-out forwards;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .features-list li:hover {
+        background: rgba(8, 247, 163, 0.1);
+        border-color: rgba(8, 247, 163, 0.4);
+        transform: translateX(10px);
+      }
+
+      .features-list li:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .features-list li:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .features-list li:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .features-list li:nth-child(4) {
+        animation-delay: 0.5s;
+      }
+
+      .features-list li::before {
+        content: "✓";
+        margin-right: 12px;
+        font-size: 18px;
+        color: #08f7a3;
+        width: 25px;
+        height: 25px;
+        background: rgba(8, 247, 163, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .cta-button {
+        background: linear-gradient(135deg, #08f7a3 0%, #00e0ff 100%);
+        color: #000;
+        padding: 14px 35px;
+        border-radius: 12px;
+        border: none;
+        font-weight: 900;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(8, 247, 163, 0.4);
+        animation: slideRight 0.8s ease-out 0.6s both;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .cta-button:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(8, 247, 163, 0.6);
+      }
+
+      .cta-button span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .login-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .login-container {
+        background: linear-gradient(
+          135deg,
+          rgba(8, 8, 8, 0.95) 0%,
+          rgba(12, 12, 12, 0.9) 100%
+        );
+        backdrop-filter: blur(20px);
+        padding: 40px;
+        border-radius: 25px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(8, 247, 163, 0.2);
+        border: 2px solid rgba(8, 247, 163, 0.2);
+        animation: slideUp 1s ease-out;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .login-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(8, 247, 163, 0.1) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .login-container:hover::after {
+        opacity: 1;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .login-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #08f7a3, #00e0ff, #08f7a3);
+        background-size: 200% 100%;
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .login-icon {
+        font-size: 50px;
+        margin-bottom: 15px;
+        display: inline-block;
+        filter: drop-shadow(0 0 20px rgba(8, 247, 163, 0.5));
+        animation: iconFloat 3s ease-in-out infinite;
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .login-header h2 {
+        color: #08f7a3;
+        font-size: 28px;
+        margin-bottom: 8px;
+        font-weight: 900;
+        text-shadow: 0 0 20px rgba(8, 247, 163, 0.3);
+      }
+
+      .login-header p {
+        color: #a0a0a0;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #08f7a3;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid rgba(8, 247, 163, 0.2);
+        border-radius: 12px;
+        font-size: 14px;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: rgba(8, 8, 8, 0.8);
+        color: #d0d0d0;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: rgba(8, 247, 163, 0.6);
+        background: rgba(8, 8, 8, 0.9);
+        box-shadow: 0 0 0 3px rgba(8, 247, 163, 0.1);
+      }
+
+      .form-group input::placeholder {
+        color: #666;
+      }
+
+      .message {
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        display: none;
+        animation: slideDown 0.3s ease-out;
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .message.error {
+        background: rgba(255, 68, 68, 0.1);
+        color: #ff4444;
+        border: 2px solid rgba(255, 68, 68, 0.3);
+        border-left: 4px solid #ff4444;
+      }
+
+      .message.success {
+        background: rgba(8, 247, 163, 0.1);
+        color: #08f7a3;
+        border: 2px solid rgba(8, 247, 163, 0.3);
+        border-left: 4px solid #08f7a3;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #08f7a3 0%, #00e0ff 100%);
+        color: #000;
+        border: none;
+        border-radius: 12px;
+        font-weight: 900;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(8, 247, 163, 0.4);
+        margin-top: 10px;
+        position: relative;
+        overflow: hidden;
+        z-index: 2;
+      }
+
+      .login-btn::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .login-btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .login-btn:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(8, 247, 163, 0.6);
+      }
+
+      .login-btn:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+
+      .login-btn span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .login-footer {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(8, 247, 163, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+
+      .login-footer p {
+        color: #a0a0a0;
+        font-size: 14px;
+      }
+
+      .login-footer a {
+        color: #08f7a3;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s;
+      }
+
+      .login-footer a:hover {
+        color: #00e0ff;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 1024px) {
+        body {
+          flex-direction: column;
+        }
+
+        .website-section {
+          padding: 40px 30px;
+          text-align: center;
+          justify-content: center;
+          min-height: 300px;
+        }
+
+        .website-section h1 {
+          font-size: 40px;
+        }
+
+        .website-section .tagline {
+          font-size: 18px;
+        }
+
+        .features-list li {
+          justify-content: center;
+        }
+
+        .login-section {
+          padding: 30px;
+        }
+
+        .login-container {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .website-section h1 {
+          font-size: 32px;
+        }
+
+        .login-container {
+          padding: 35px 25px;
+        }
+
+        .login-header h2 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- خلفية تكنولوجية -->
+    <div class="tech-background"></div>
+    <div class="grid-overlay"></div>
+    <div class="glow-circles">
+      <div class="glow-circle glow-circle-1"></div>
+      <div class="glow-circle glow-circle-2"></div>
+      <div class="glow-circle glow-circle-3"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+    <div class="digital-lines" id="digital-lines"></div>
+
+    <div class="website-section">
+      <div class="website-icon">🚀</div>
+      <h1>منصة اكرم المتقدمة</h1>
+      <p class="tagline">تواصل آمن • سريع • موثوق</p>
+
+      <ul class="features-list">
+        <li>🔐 تشفير من الدرجة العسكرية</li>
+        <li>⚡ سرعة فائقة في التواصل</li>
+        <li>👥 إدارة جهات اتصال متقدمة</li>
+        <li>📱 متوافق مع جميع الأجهزة</li>
+      </ul>
+
+      <button class="cta-button" onclick="window.location.href='welcome.html'">
+        <span>← العودة إلى الرئيسية</span>
+      </button>
+    </div>
+
+    <div class="login-section">
+      <div class="login-container">
+        <div class="login-header">
+          <div class="login-icon">🔐</div>
+          <h2>تسجيل الدخول</h2>
+          <p>أدخل بيانات حسابك للمتابعة</p>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">اسم المستخدم أو البريد</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="أدخل اسم المستخدم"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="أدخل كلمة المرور"
+              required
+            />
+          </div>
+
+          <button type="submit" class="login-btn">
+            <span>دخول آمن ⚡</span>
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <p>ليس لديك حساب؟ <a href="register.html">← اطلب عضوية جديدة</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // إنشاء جزيئات متحركة
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 3 + 1}px;
+            height: ${Math.random() * 3 + 1}px;
+            background: #08f7a3;
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            opacity: ${Math.random() * 0.5 + 0.2};
+            animation: particleFloat ${Math.random() * 20 + 10}s ${
+            Math.random() * 5
+          }s infinite ease-in-out;
+            box-shadow: 0 0 10px #08f7a3;
+          `;
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // إنشاء خطوط رقمية
+      function createDigitalLines() {
+        const linesContainer = document.getElementById("digital-lines");
+        const lineCount = 10;
+
+        for (let i = 0; i < lineCount; i++) {
+          const line = document.createElement("div");
+          line.className = "digital-line";
+          line.style.cssText = `
+            left: ${Math.random() * 100}%;
+            animation-duration: ${Math.random() * 2 + 2}s;
+            animation-delay: ${Math.random() * 5}s;
+          `;
+          linesContainer.appendChild(line);
+        }
+      }
+
+      // تأثير الماوس على صندوق تسجيل الدخول
+      const loginContainer = document.querySelector(".login-container");
+      if (loginContainer) {
+        loginContainer.addEventListener("mousemove", (e) => {
+          const rect = loginContainer.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          loginContainer.style.setProperty("--mouse-x", x + "%");
+          loginContainer.style.setProperty("--mouse-y", y + "%");
+        });
+      }
+
+      // تشغيل الأنيميشنات
+      createParticles();
+      createDigitalLines();
+
+      // إضافة CSS للأنيميشنات
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes particleFloat {
+          0%, 100% {
+            transform: translate(0, 0);
+          }
+          25% {
+            transform: translate(20px, -30px);
+          }
+          50% {
+            transform: translate(-15px, -60px);
+          }
+          75% {
+            transform: translate(25px, -30px);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // تحديد الرابط تلقائياً حسب البيئة
+      const API_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:5000/api"
+          : window.location.origin + "/api";
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value;
+
+          if (!username || !password) {
+            showMessage("❌ يرجى ملء جميع الحقول", "error");
+            return;
+          }
+
+          try {
+            const btn = document.querySelector(".login-btn");
+            btn.disabled = true;
+            btn.textContent = "⏳ جارٍ المعالجة...";
+
+            const res = await fetch(`${API_URL}/auth/login`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username, password }),
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+              localStorage.setItem("token", result.token);
+              localStorage.setItem("user_id", result.user_id);
+              localStorage.setItem("username", result.username);
+              localStorage.setItem("is_admin", result.is_admin);
+              showMessage("✅ تم الدخول بنجاح! جارٍ الانتقال...", "success");
+              setTimeout(() => {
+                window.location.href = "dashboard_old.html";
+              }, 1500);
+            } else {
+              const error = result.error || "فشل تسجيل الدخول";
+              if (error.includes("موافقة") || error.includes("معلقة")) {
+                showMessage(
+                  "⏳ حسابك قيد المراجعة\nيرجى انتظار موافقة الإدارة",
+                  "error"
+                );
+              } else {
+                showMessage("❌ " + error, "error");
+              }
+              btn.disabled = false;
+              btn.textContent = "دخول آمن";
+            }
+          } catch (e) {
+            showMessage("❌ خطأ في الاتصال: " + e.message, "error");
+            document.querySelector(".login-btn").disabled = false;
+            document.querySelector(".login-btn").textContent = "دخول آمن";
+          }
+        });
+
+      function showMessage(msg, type) {
+        const div = document.getElementById("message");
+        div.textContent = msg;
+        div.className = "message " + type;
+      }
+    </script>
+  </body>
+</html>

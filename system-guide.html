@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام الرسائل المتقدم - دليل التشغيل</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        direction: rtl;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #667eea;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 32px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        color: #333;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+
+      .subsection {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        border-left: 4px solid #667eea;
+      }
+
+      .subsection h3 {
+        color: #667eea;
+        margin-bottom: 10px;
+      }
+
+      .subsection p {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 5px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .feature-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .feature-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .feature-card p {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .quick-start {
+        background: #fff9e6;
+        border: 2px solid #ffc107;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .quick-start h3 {
+        color: #ff9800;
+        margin-bottom: 15px;
+      }
+
+      .step {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .step:last-child {
+        border-bottom: none;
+      }
+
+      .step strong {
+        color: #667eea;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        margin: 10px 0;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+      }
+
+      .api-endpoints {
+        display: grid;
+        gap: 10px;
+      }
+
+      .endpoint {
+        background: #f5f5f5;
+        padding: 12px;
+        border-radius: 5px;
+        border-left: 4px solid #667eea;
+      }
+
+      .endpoint strong {
+        color: #667eea;
+      }
+
+      .endpoint-method {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-align: center;
+        margin: 10px 5px 10px 0;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .note {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+      }
+
+      .warning {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        color: #856404;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      th,
+      td {
+        text-align: right;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background: #667eea;
+        color: white;
+        font-weight: 600;
+      }
+
+      tr:hover {
+        background: #f5f5f5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 نظام الرسائل المتقدم</h1>
+
+      <!-- المميزات الأساسية -->
+      <div class="section">
+        <h2>✨ المميزات الرئيسية</h2>
+        <div class="features">
+          <div class="feature-card">
+            <h3>👤 إدارة الحسابات</h3>
+            <p>تسجيل حسابات جديدة وتسجيل دخول آمن مع جلسات محمية</p>
+          </div>
+          <div class="feature-card">
+            <h3>💬 نظام الرسائل</h3>
+            <p>إرسال استقبال الرسائل بين المستخدمين مع تتبع الحالة</p>
+          </div>
+          <div class="feature-card">
+            <h3>👥 جهات الاتصال</h3>
+            <p>إدارة قائمة جهات الاتصال والبحث عن المستخدمين</p>
+          </div>
+          <div class="feature-card">
+            <h3>📊 لوحة التحكم</h3>
+            <p>عرض إحصائيات المستخدم والرسائل الواردة والمرسلة</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- البداية السريعة -->
+      <div class="section">
+        <div class="quick-start">
+          <h3>⚡ البداية السريعة</h3>
+
+          <div class="step">
+            <strong>1️⃣ الخطوة الأولى: الدخول للنظام</strong>
+            <p>
+              اذهب إلى
+              <a href="login.html" style="color: #667eea; font-weight: 600"
+                >صفحة تسجيل الدخول</a
+              >
+            </p>
+            <p><strong>حساب تجريبي:</strong></p>
+            <div class="code-block">
+              اسم المستخدم: admin كلمة المرور: password123
+            </div>
+          </div>
+
+          <div class="step">
+            <strong>2️⃣ إنشاء حساب جديد</strong>
+            <p>
+              أو اذهب إلى
+              <a href="register.html" style="color: #667eea; font-weight: 600"
+                >صفحة التسجيل</a
+              >
+              لإنشاء حساب جديد
+            </p>
+          </div>
+
+          <div class="step">
+            <strong>3️⃣ الوصول إلى لوحة التحكم</strong>
+            <p>
+              بعد تسجيل الدخول ستُوجه تلقائياً إلى
+              <a href="dashboard.html" style="color: #667eea; font-weight: 600"
+                >لوحة التحكم</a
+              >
+            </p>
+          </div>
+
+          <div class="step">
+            <strong>4️⃣ إرسال رسالة</strong>
+            <p>استخدم بحث المستخدمين لإيجاد المستقبل وأرسل له رسالة</p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px">
+          <a href="login.html" class="btn">تسجيل الدخول</a>
+          <a href="register.html" class="btn">إنشاء حساب جديد</a>
+          <a href="dashboard.html" class="btn">الذهاب للوحة التحكم</a>
+        </div>
+      </div>
+
+      <!-- الهندسة المعمارية -->
+      <div class="section">
+        <h2>🏗️ الهندسة المعمارية</h2>
+        <div class="subsection">
+          <h3>البنية التحتية للنظام</h3>
+          <div class="code-block">
+            Frontend (HTML/CSS/JavaScript) ↓ HTTP Requests/Responses ↓ Backend
+            API (Flask - Python) ↓ SQLite Database
+          </div>
+        </div>
+      </div>
+
+      <!-- قاعدة البيانات -->
+      <div class="section">
+        <h2>💾 هيكل قاعدة البيانات</h2>
+
+        <div class="subsection">
+          <h3>جدول المستخدمين (Users)</h3>
+          <table>
+            <tr>
+              <th>الحقل</th>
+              <th>النوع</th>
+              <th>الوصف</th>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>PRIMARY KEY</td>
+              <td>معرّف فريد للمستخدم</td>
+            </tr>
+            <tr>
+              <td>username</td>
+              <td>TEXT UNIQUE</td>
+              <td>اسم المستخدم (فريد)</td>
+            </tr>
+            <tr>
+              <td>email</td>
+              <td>TEXT UNIQUE</td>
+              <td>البريد الإلكتروني (فريد)</td>
+            </tr>
+            <tr>
+              <td>password_hash</td>
+              <td>TEXT</td>
+              <td>كلمة المرور المشفرة</td>
+            </tr>
+            <tr>
+              <td>full_name</td>
+              <td>TEXT</td>
+              <td>الاسم الكامل</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="subsection">
+          <h3>جدول الرسائل (Messages)</h3>
+          <table>
+            <tr>
+              <th>الحقل</th>
+              <th>النوع</th>
+              <th>الوصف</th>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>PRIMARY KEY</td>
+              <td>معرّف فريد للرسالة</td>
+            </tr>
+            <tr>
+              <td>sender_id</td>
+              <td>FOREIGN KEY</td>
+              <td>معرّف المرسل</td>
+            </tr>
+            <tr>
+              <td>receiver_id</td>
+              <td>FOREIGN KEY</td>
+              <td>معرّف المستقبل</td>
+            </tr>
+            <tr>
+              <td>subject</td>
+              <td>TEXT</td>
+              <td>موضوع الرسالة</td>
+            </tr>
+            <tr>
+              <td>content</td>
+              <td>TEXT</td>
+              <td>محتوى الرسالة</td>
+            </tr>
+            <tr>
+              <td>is_read</td>
+              <td>BOOLEAN</td>
+              <td>هل تمت قراءة الرسالة</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- API Documentation -->
+      <div class="section">
+        <h2>📡 نقاط نهاية API</h2>
+
+        <div class="subsection">
+          <h3>المصادقة (Authentication)</h3>
+          <div class="api-endpoints">
+            <div class="endpoint">
+              <span class="endpoint-method">POST</span>
+              <strong>/api/auth/register</strong> - تسجيل حساب جديد
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">POST</span>
+              <strong>/api/auth/login</strong> - تسجيل الدخول
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">POST</span>
+              <strong>/api/auth/logout</strong> - تسجيل الخروج
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <h3>الرسائل (Messages)</h3>
+          <div class="api-endpoints">
+            <div class="endpoint">
+              <span class="endpoint-method">POST</span>
+              <strong>/api/messages/send</strong> - إرسال رسالة
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">GET</span>
+              <strong>/api/messages/inbox</strong> - الرسائل الواردة
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">GET</span>
+              <strong>/api/messages/outbox</strong> - الرسائل المرسلة
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">PUT</span>
+              <strong>/api/messages/&lt;id&gt;/mark-read</strong> - وضع علامة
+              مقروءة
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <h3>المستخدمين والاتصالات (Users & Contacts)</h3>
+          <div class="api-endpoints">
+            <div class="endpoint">
+              <span class="endpoint-method">GET</span>
+              <strong>/api/user/profile</strong> - الملف الشخصي
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">GET</span>
+              <strong>/api/contacts</strong> - جهات الاتصال
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-method">GET</span>
+              <strong>/api/users/search?q=query</strong> - البحث عن مستخدمين
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- المميزات الأمنية -->
+      <div class="section">
+        <h2>🔒 الأمان</h2>
+        <div class="subsection">
+          <h3>آليات الحماية المطبقة:</h3>
+          <ul style="margin-right: 20px; line-height: 2">
+            <li>✅ تشفير كلمات المرور باستخدام Werkzeug</li>
+            <li>✅ جلسات محمية مع توكنات عشوائية</li>
+            <li>✅ التحقق من الجلسة قبل الوصول لأي بيانات</li>
+            <li>✅ عزل البيانات حسب المستخدم</li>
+            <li>✅ CORS محفوظ لمنع الهجمات</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ملاحظات مهمة -->
+      <div class="note">
+        <strong>ℹ️ ملاحظات مهمة:</strong>
+        <ul style="margin-right: 20px; margin-top: 10px; line-height: 1.8">
+          <li>البيانات تُحفظ في قاعدة بيانات SQLite محلية</li>
+          <li>الخادم يعمل على localhost:5000</li>
+          <li>الصفحات الأمامية تعمل على localhost:8000</li>
+          <li>جميع الرسائل محفوظة بشكل دائم</li>
+        </ul>
+      </div>
+
+      <div class="warning">
+        <strong>⚠️ للإنتاج:</strong>
+        <ul style="margin-right: 20px; margin-top: 10px; line-height: 1.8">
+          <li>استخدم HTTPS بدل HTTP</li>
+          <li>استخدم خادم الإنتاج (مثل Gunicorn)</li>
+          <li>أضف HTTPS و SSL/TLS</li>
+          <li>استخدم قاعدة بيانات قوية (PostgreSQL)</li>
+          <li>أضف نظام التسجيل والمراقبة</li>
+        </ul>
+      </div>
+
+      <!-- التطوير اللاحق -->
+      <div class="section">
+        <h2>🔮 إمكانيات التطوير المستقبلي</h2>
+        <div class="subsection">
+          <h3>يمكن إضافة:</h3>
+          <ul style="margin-right: 20px; line-height: 2">
+            <li>📹 مكالمات الفيديو والصوت</li>
+            <li>🔔 إشعارات فورية (Real-time)</li>
+            <li>📁 مشاركة الملفات</li>
+            <li>🎯 مجموعات الدردشة</li>
+            <li>🔍 بحث متقدم في الرسائل</li>
+            <li>⭐ تقييم المستخدمين</li>
+            <li>🛡️ نظام الحظر والإبلاغ</li>
+            <li>📱 تطبيق موبايل</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- الدعم والمساعدة -->
+      <div class="section">
+        <h2>📞 الدعم والمساعدة</h2>
+        <div class="subsection">
+          <p>عند مواجهة أي مشاكل أو أسئلة، يرجى التحقق من:</p>
+          <ul style="margin-right: 20px; line-height: 2; margin-top: 10px">
+            <li>أن الخادم Backend يعمل على البورت 5000</li>
+            <li>أن الخادم الأمامي يعمل على البورت 8000</li>
+            <li>أن قاعدة البيانات موجودة في المجلد</li>
+            <li>الاتصال بين Frontend و Backend</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- أزرار الملاحة -->
+      <div
+        style="
+          text-align: center;
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 2px solid #eee;
+        "
+      >
+        <h3>🌐 الملاحات السريعة</h3>
+        <a href="index.html" class="btn">الصفحة الرئيسية</a>
+        <a href="login.html" class="btn">تسجيل الدخول</a>
+        <a href="register.html" class="btn">إنشاء حساب جديد</a>
+        <a href="dashboard.html" class="btn">لوحة التحكم</a>
+      </div>
+    </div>
+  </body>
+</html>

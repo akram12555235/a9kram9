@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>لوحة التحكم - منضمة اكرم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+
+    <!-- شاشة تسجيل الدخول -->
+    <div id="login-screen" class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>🔐 لوحة التحكم</h1>
+          <p>منضمة اكرم - نظام الرسائل الآمن</p>
+        </div>
+
+        <form class="login-form" onsubmit="handleAdminLogin(event)">
+          <div class="form-group">
+            <label for="admin-username">👤 اسم المستخدم:</label>
+            <input
+              type="text"
+              id="admin-username"
+              name="username"
+              placeholder="أدخل اسم المستخدم"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="admin-password">🔑 كلمة المرور:</label>
+            <input
+              type="password"
+              id="admin-password"
+              name="password"
+              placeholder="أدخل كلمة المرور"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn primary full-width">دخول 🚪</button>
+        </form>
+
+        <div class="login-hint">
+          <p>💡 هذا النظام محمي بالكامل وآمن</p>
+          <p>استخدم بيانات الدخول الخاصة بك</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div id="admin-dashboard" class="admin-dashboard hidden">
+      <header class="admin-header">
+        <div class="header-content">
+          <h1>🎛️ لوحة التحكم</h1>
+          <p>نظام إدارة الرسائل الآمنة</p>
+        </div>
+        <div class="admin-user">
+          <span id="current-user">المسؤول</span>
+          <button class="btn ghost small" onclick="handleAdminLogout()">
+            خروج 🚪
+          </button>
+        </div>
+      </header>
+
+      <div class="admin-layout">
+        <!-- الشريط الجانبي -->
+        <aside class="admin-sidebar">
+          <nav class="sidebar-nav">
+            <button class="nav-btn active" data-section="overview">
+              📊 نظرة عامة
+            </button>
+            <button class="nav-btn" data-section="messages">📬 الرسائل</button>
+            <button class="nav-btn" data-section="analytics">
+              📈 الإحصائيات
+            </button>
+            <button class="nav-btn" data-section="settings">
+              ⚙️ الإعدادات
+            </button>
+          </nav>
+
+          <div class="sidebar-stats">
+            <div class="stat">
+              <span class="stat-label">رسائل جديدة</span>
+              <span class="stat-value" id="new-messages-count">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">إجمالي</span>
+              <span class="stat-value" id="total-messages-count">0</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="admin-content">
+          <!-- قسم النظرة العامة -->
+          <section id="overview-section" class="admin-section active">
+            <h2>📊 نظرة عامة على النظام</h2>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-icon">📬</span>
+                <span class="stat-label">إجمالي الرسائل</span>
+                <span class="stat-number" id="total-stats">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">💬</span>
+                <span class="stat-label">رسائل عام</span>
+                <span class="stat-number" id="general-stats">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">🔐</span>
+                <span class="stat-label">رسائل سرية</span>
+                <span class="stat-number" id="secure-stats">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">👥</span>
+                <span class="stat-label">رسائل أعضاء</span>
+                <span class="stat-number" id="member-stats">0</span>
+              </div>
+            </div>
+
+            <div class="dashboard-widgets">
+              <div class="widget">
+                <h3>🔴 رسائل حرجة جديدة</h3>
+                <div id="critical-messages" class="messages-preview">
+                  <p class="empty-preview">لا توجد رسائل حرجة</p>
+                </div>
+              </div>
+
+              <div class="widget">
+                <h3>🟠 رسائل عاجلة</h3>
+                <div id="urgent-messages" class="messages-preview">
+                  <p class="empty-preview">لا توجد رسائل عاجلة</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- قسم الرسائل -->
+          <section id="messages-section" class="admin-section">
+            <h2>📬 إدارة الرسائل</h2>
+
+            <div class="messages-controls">
+              <div class="search-box">
+                <input
+                  type="text"
+                  id="message-search"
+                  placeholder="🔍 بحث عن رسالة..."
+                />
+              </div>
+
+              <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                  الكل
+                </button>
+                <button class="filter-btn" data-filter="general">عام</button>
+                <button class="filter-btn" data-filter="secure">سري</button>
+                <button class="filter-btn" data-filter="member">عضو</button>
+              </div>
+
+              <div class="sort-buttons">
+                <button class="sort-btn active" data-sort="newest">
+                  أحدث 🆕
+                </button>
+                <button class="sort-btn" data-sort="oldest">أقدم 🕐</button>
+                <button class="sort-btn" data-sort="priority">أولوية ⚡</button>
+              </div>
+            </div>
+
+            <div id="messages-container" class="messages-admin-list">
+              <p class="loading">جاري التحميل...</p>
+            </div>
+          </section>
+
+          <!-- قسم الإحصائيات -->
+          <section id="analytics-section" class="admin-section">
+            <h2>📈 الإحصائيات المتقدمة</h2>
+
+            <div class="analytics-grid">
+              <div class="chart-box">
+                <h3>📊 توزيع الرسائل</h3>
+                <canvas id="messages-chart" height="200"></canvas>
+              </div>
+
+              <div class="chart-box">
+                <h3>⏰ الأولويات</h3>
+                <div id="priority-stats" class="priority-breakdown"></div>
+              </div>
+            </div>
+
+            <div class="analytics-table">
+              <h3>📋 ملخص الأنشطة</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>النوع</th>
+                    <th>العدد</th>
+                    <th>النسبة</th>
+                    <th>آخر تحديث</th>
+                  </tr>
+                </thead>
+                <tbody id="analytics-tbody">
+                  <tr>
+                    <td colspan="4" class="empty-table">
+                      جاري جمع البيانات...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- قسم الإعدادات -->
+          <section id="settings-section" class="admin-section">
+            <h2>⚙️ الإعدادات</h2>
+
+            <div class="settings-grid">
+              <div class="setting-card">
+                <h3>🗑️ حذف البيانات</h3>
+                <p>حذف جميع الرسائل المحفوظة (عملية لا تُرجع)</p>
+                <button class="btn danger" onclick="deleteAllData()">
+                  حذف الكل
+                </button>
+              </div>
+
+              <div class="setting-card">
+                <h3>📥 تصدير البيانات</h3>
+                <p>تحميل جميع الرسائل كملف JSON</p>
+                <button class="btn secondary" onclick="exportAllData()">
+                  تصدير
+                </button>
+              </div>
+
+              <div class="setting-card">
+                <h3>🔄 تحديث اليد</h3>
+                <p>تحديث البيانات والرسائل يدوياً</p>
+                <button class="btn secondary" onclick="refreshData()">
+                  تحديث
+                </button>
+              </div>
+
+              <div class="setting-card">
+                <h3>🔐 تغيير كلمة المرور</h3>
+                <p>قم بتغيير بيانات الدخول الخاصة بك</p>
+                <button class="btn secondary" onclick="changePassword()">
+                  تغيير
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Modal للرسالة التفصيلية -->
+    <div id="message-detail-modal" class="modal">
+      <div class="modal-content large">
+        <button
+          class="modal-close"
+          onclick="closeModal('message-detail-modal')"
+        >
+          ✕
+        </button>
+        <div id="message-detail-content"></div>
+      </div>
+    </div>
+
+    <!-- Modal تأكيد الحذف -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content">
+        <h3 id="confirm-title">تأكيد</h3>
+        <p id="confirm-message"></p>
+        <div class="modal-buttons">
+          <button class="btn primary" onclick="confirmDelete()">
+            تأكيد ✅
+          </button>
+          <button class="btn ghost" onclick="closeModal('confirm-modal')">
+            إلغاء ❌
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="secure-contact.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

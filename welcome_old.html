@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>بوابة الدخول - نظام الرسائل</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        direction: rtl;
+        padding: 20px;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .card h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .card p {
+        color: #666;
+        text-align: center;
+        margin-bottom: 25px;
+        line-height: 1.6;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .header {
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+        grid-column: 1 / -1;
+      }
+
+      .header h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      .info {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        margin-top: 20px;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .info strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .info p {
+        font-size: 12px;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+
+        .header h1 {
+          font-size: 28px;
+        }
+
+        .card {
+          padding: 30px;
+        }
+      }
+
+      .features {
+        list-style: none;
+        margin: 20px 0;
+        text-align: right;
+      }
+
+      .features li {
+        padding: 8px 0;
+        color: #666;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .features li:before {
+        content: "✓ ";
+        color: #667eea;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🚀 مرحباً بك</h1>
+        <p>نظام التواصل الآمن والمتقدم</p>
+      </div>
+
+      <!-- كارت تسجيل الدخول -->
+      <div class="card">
+        <h2>🔐 تسجيل الدخول</h2>
+        <p>لديك حساب بالفعل؟ ادخل هنا واستمتع بتجربتك</p>
+
+        <ul class="features">
+          <li>وصول فوري للرسائل</li>
+          <li>إدارة جهات الاتصال</li>
+          <li>لوحة تحكم شاملة</li>
+          <li>حماية عالية للبيانات</li>
+        </ul>
+
+        <button class="btn" onclick="window.location.href='login.html'">
+          ادخل إلى حسابك
+        </button>
+
+        <div class="info">
+          <strong>حساب تجريبي:</strong>
+          <p>اسم المستخدم: admin</p>
+          <p>كلمة المرور: admin123</p>
+        </div>
+      </div>
+
+      <!-- كارت إنشاء حساب -->
+      <div class="card">
+        <h2>📝 إنشاء حساب جديد</h2>
+        <p>جديد هنا؟ اطلب حساب جديد اليوم والبدء بالتواصل</p>
+
+        <ul class="features">
+          <li>إنشاء سريل وآمن</li>
+          <li>موافقة من الإدارة</li>
+          <li>ملف شخصي متقدم</li>
+          <li>دعم تقني متواصل</li>
+        </ul>
+
+        <button class="btn" onclick="window.location.href='register.html'">
+          طلب حساب جديد
+        </button>
+
+        <div class="info">
+          <strong>ملاحظة مهمة:</strong>
+          <p>بعد التسجيل، سيتم استقبال طلبك في انتظار موافقة الإدارة</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

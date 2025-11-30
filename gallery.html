@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>المعرض - صور ومواد بصرية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="lightbox.css" />
+  </head>
+  <body class="gallery-page">
+    <div class="noise-overlay"></div>
+
+    <!-- خلفية متحركة بجزيئات -->
+    <div class="particles-background" id="particles-bg"></div>
+
+    <!-- خلفية متدرجة متحركة -->
+    <div class="animated-gradient-bg"></div>
+
+    <header class="main-header">
+      <div class="logo">
+        <span class="logo-main">منضمة اكرم</span>
+        <span class="logo-sub">عالم الماسونية والهاكر الوهمي</span>
+      </div>
+      <nav class="top-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عن الموقع</a>
+        <a href="news.html">📰 الأخبار</a>
+        <a href="gallery.html" class="active">المعرض</a>
+        <a href="articles.html">المقالات</a>
+        <a href="contact.html">تواصل</a>
+        <button
+          id="toggle-bg-btn"
+          class="btn-toggle-bg"
+          title="تشغيل/إيقاف الخلفية"
+        >
+          🔆
+        </button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar right-sidebar">
+        <h3>روابط سريعة</h3>
+        <ul>
+          <li><a href="#gifs">صور متحركة</a></li>
+          <li><a href="#photos">الصور الثابتة</a></li>
+          <li><a href="index.html">العودة للرئيسية</a></li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <!-- Hero Section للمعرض -->
+        <section class="gallery-hero">
+          <div class="gallery-hero-content">
+            <div class="hero-icon-wrapper">
+              <span class="hero-icon">🎨</span>
+              <div class="icon-glow"></div>
+            </div>
+            <h1 class="gallery-title">
+              <span class="title-line">معرض</span>
+              <span class="title-highlight">الإبداع البصري</span>
+            </h1>
+            <p class="gallery-subtitle">
+              استكشف مجموعة مذهلة من الصور المتحركة والتصاميم الفنية
+            </p>
+            <div class="gallery-stats">
+              <div class="stat-item">
+                <span class="stat-icon">🖼️</span>
+                <span class="stat-value">43</span>
+                <span class="stat-text">صورة</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">✨</span>
+                <span class="stat-value">HD</span>
+                <span class="stat-text">جودة</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">🎯</span>
+                <span class="stat-value">100%</span>
+                <span class="stat-text">مجاني</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-decoration">
+            <div class="deco-circle circle-1"></div>
+            <div class="deco-circle circle-2"></div>
+            <div class="deco-circle circle-3"></div>
+          </div>
+        </section>
+
+        <!-- فلاتر المعرض -->
+        <section class="gallery-filters">
+          <div class="filter-header">
+            <h3>🎭 تصفية حسب</h3>
+          </div>
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">
+              <span class="filter-icon">🌟</span>
+              <span>الكل</span>
+              <span class="filter-count">43</span>
+            </button>
+            <button class="filter-btn" data-filter="animated">
+              <span class="filter-icon">🎬</span>
+              <span>متحركة</span>
+              <span class="filter-count">43</span>
+            </button>
+            <button class="filter-btn" data-filter="static">
+              <span class="filter-icon">📸</span>
+              <span>ثابتة</span>
+              <span class="filter-count">0</span>
+            </button>
+            <button class="filter-btn" data-filter="favorites">
+              <span class="filter-icon">❤️</span>
+              <span>المفضلة</span>
+              <span class="filter-count">0</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- قسم الصور المتحركة المحدث -->
+        <section id="gifs" class="modern-gallery-section">
+          <div class="section-header-modern">
+            <div class="header-content">
+              <h2 class="section-title-modern">
+                <span class="title-icon-modern">🎬</span>
+                صور متحركة
+              </h2>
+              <p class="section-description">
+                مجموعة متنوعة من الصور المتحركة عالية الجودة
+              </p>
+            </div>
+            <div class="view-options">
+              <button class="view-btn active" data-view="grid" title="عرض شبكي">
+                <span>⊞</span>
+              </button>
+              <button class="view-btn" data-view="list" title="عرض قائمة">
+                <span>☰</span>
+              </button>
+            </div>
+          </div>
+          <div id="gallery-grid" class="modern-gallery-grid">
+            <!-- تُملأ ديناميكياً من script.js -->
+          </div>
+        </section>
+
+        <!-- قسم الصور الثابتة المحدث -->
+        <section id="photos" class="modern-gallery-section">
+          <div class="section-header-modern">
+            <h2 class="section-title-modern">
+              <span class="title-icon-modern">📸</span>
+              صور ثابتة
+            </h2>
+          </div>
+          <div class="empty-state" id="empty-state-photos">
+            <div class="empty-icon">📁</div>
+            <h3>لا توجد صور ثابتة حالياً</h3>
+            <p>اضغط على الزر لإضافة صور من جهازك</p>
+            <input
+              type="file"
+              id="photo-upload"
+              accept="image/*"
+              multiple
+              style="display: none"
+            />
+            <button class="btn primary" id="add-photos-btn">
+              <span>➕</span>
+              إضافة صور
+            </button>
+          </div>
+          <div
+            id="photos-grid"
+            class="modern-gallery-grid"
+            style="display: none"
+          >
+            <!-- الصور المضافة ستظهر هنا -->
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar left-sidebar">
+        <h3>أقسام الموقع</h3>
+        <ul>
+          <li><a href="index.html">الصفحة الرئيسية</a></li>
+          <li><a href="about.html">من نحن</a></li>
+          <li><a href="articles.html">مقالات وتحليلات</a></li>
+          <li><a href="gallery.html" class="active">صور ومواد بصرية</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="main-footer">
+      <p>
+        © <span id="year"></span> - موقع بإدارة <strong>منضمة اكرم</strong>.
+        جميع الحقوق محفوظة.
+      </p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-overlay">
+      <div class="lightbox-container">
+        <img class="lightbox-image" src="" alt="Full screen" />
+        <span class="lightbox-close">&times;</span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="lightbox.js"></script>
+  </body>
+</html>

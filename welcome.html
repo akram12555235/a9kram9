@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 مرحباً بك - منصة اكرم المتقدمة</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #000;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        direction: rtl;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* خلفية تكنولوجية متحركة */
+      .tech-background {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #0a0a0a 50%,
+          #001a1a 100%
+        );
+      }
+
+      /* شبكة متحركة */
+      .grid-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background-image: linear-gradient(
+            rgba(8, 247, 163, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(8, 247, 163, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+        opacity: 0.3;
+      }
+
+      @keyframes gridMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
+      }
+
+      /* جزيئات متحركة */
+      .particles {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        background: #08f7a3;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      /* دوائر متوهجة */
+      .glow-circles {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .glow-circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.15;
+        animation: glowFloat 15s ease-in-out infinite;
+      }
+
+      .glow-circle-1 {
+        width: 400px;
+        height: 400px;
+        background: #08f7a3;
+        top: -200px;
+        right: -200px;
+        animation-delay: 0s;
+      }
+
+      .glow-circle-2 {
+        width: 500px;
+        height: 500px;
+        background: #00e0ff;
+        bottom: -250px;
+        left: -250px;
+        animation-delay: 5s;
+      }
+
+      .glow-circle-3 {
+        width: 350px;
+        height: 350px;
+        background: #00ffc8;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: 10s;
+      }
+
+      @keyframes glowFloat {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(50px, -50px) scale(1.1);
+        }
+        66% {
+          transform: translate(-50px, 50px) scale(0.9);
+        }
+      }
+
+      /* خطوط رقمية متحركة */
+      .digital-lines {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .digital-line {
+        position: absolute;
+        width: 2px;
+        height: 100px;
+        background: linear-gradient(180deg, transparent, #08f7a3, transparent);
+        animation: lineMove 3s linear infinite;
+        opacity: 0.5;
+      }
+
+      @keyframes lineMove {
+        0% {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      .wrapper {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        animation: slideDown 1s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header-icon {
+        font-size: 50px;
+        margin-bottom: 15px;
+        display: inline-block;
+        animation: iconPulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px rgba(8, 247, 163, 0.6));
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .header h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        background: linear-gradient(135deg, #08f7a3, #00e0ff, #08f7a3);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientText 3s ease infinite;
+        text-shadow: 0 0 40px rgba(8, 247, 163, 0.3);
+      }
+
+      @keyframes gradientText {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .header p {
+        font-size: 16px;
+        color: #a0a0a0;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 20px rgba(8, 247, 163, 0.2);
+      }
+
+      .header-subtitle {
+        display: inline-block;
+        padding: 0.4rem 1.2rem;
+        background: rgba(8, 247, 163, 0.1);
+        border: 1px solid rgba(8, 247, 163, 0.3);
+        border-radius: 50px;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #08f7a3;
+        font-weight: 600;
+        animation: subtitleGlow 2s ease-in-out infinite;
+      }
+
+      @keyframes subtitleGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 10px rgba(8, 247, 163, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(8, 247, 163, 0.4);
+        }
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        width: 100%;
+      }
+
+      .card {
+        background: linear-gradient(
+          135deg,
+          rgba(8, 8, 8, 0.95) 0%,
+          rgba(12, 12, 12, 0.9) 100%
+        );
+        backdrop-filter: blur(20px);
+        padding: 30px 25px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(8, 247, 163, 0.2);
+        border: 2px solid rgba(8, 247, 163, 0.2);
+        position: relative;
+        overflow: hidden;
+        animation: slideUp 1s ease-out;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.2, 1);
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(8, 247, 163, 0.1) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .card:hover::after {
+        opacity: 1;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #08f7a3, #00e0ff, #08f7a3);
+        background-size: 200% 100%;
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 30px 80px rgba(8, 247, 163, 0.3),
+          0 0 0 1px rgba(8, 247, 163, 0.5);
+        border-color: rgba(8, 247, 163, 0.6);
+      }
+
+      .card-icon {
+        font-size: 40px;
+        text-align: center;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 0 15px rgba(8, 247, 163, 0.4));
+        animation: cardIconFloat 3s ease-in-out infinite;
+      }
+
+      @keyframes cardIconFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      .card h2 {
+        color: #08f7a3;
+        margin-bottom: 12px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 900;
+        text-shadow: 0 0 15px rgba(8, 247, 163, 0.3);
+      }
+
+      .card p {
+        color: #a0a0a0;
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      .features {
+        list-style: none;
+        margin: 20px 0;
+        text-align: right;
+      }
+
+      .features li {
+        padding: 10px 15px;
+        color: #d0d0d0;
+        font-size: 13px;
+        background: rgba(8, 247, 163, 0.05);
+        border: 1px solid rgba(8, 247, 163, 0.2);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        transition: all 0.3s ease;
+      }
+
+      .features li:last-child {
+        margin-bottom: 0;
+      }
+
+      .features li:hover {
+        background: rgba(8, 247, 163, 0.1);
+        border-color: rgba(8, 247, 163, 0.4);
+        transform: translateX(-5px);
+      }
+
+      .features li::before {
+        content: "✓";
+        color: #08f7a3;
+        font-weight: bold;
+        margin-right: 10px;
+        font-size: 14px;
+        width: 20px;
+        height: 20px;
+        background: rgba(8, 247, 163, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: checkPop 0.6s ease-out;
+      }
+
+      @keyframes checkPop {
+        0% {
+          transform: scale(0) rotate(-180deg);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.2) rotate(10deg);
+        }
+        100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 1;
+        }
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #08f7a3 0%, #00e0ff 100%);
+        color: #000;
+        border: none;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 900;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.2, 1);
+        text-decoration: none;
+        text-align: center;
+        letter-spacing: 0.5px;
+        margin-top: 20px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(8, 247, 163, 0.4);
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(8, 247, 163, 0.6);
+      }
+
+      .btn:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+
+      .btn span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .info {
+        background: rgba(8, 247, 163, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        margin-top: 20px;
+        text-align: center;
+        border: 2px solid rgba(8, 247, 163, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .info::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(8, 247, 163, 0.1),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .info:hover::before {
+        left: 100%;
+      }
+
+      .info:hover {
+        border-color: rgba(8, 247, 163, 0.5);
+        background: rgba(8, 247, 163, 0.1);
+        box-shadow: 0 5px 20px rgba(8, 247, 163, 0.2);
+      }
+
+      .info strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        color: #08f7a3;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+      }
+
+      .info p {
+        font-size: 12px;
+        color: #d0d0d0;
+        line-height: 1.5;
+        position: relative;
+        z-index: 1;
+        font-weight: 600;
+      }
+
+      @media (max-width: 960px) {
+        .container {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .header h1 {
+          font-size: 32px;
+        }
+
+        .header p {
+          font-size: 15px;
+        }
+
+        .card {
+          padding: 25px 20px;
+        }
+
+        .card h2 {
+          font-size: 22px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .wrapper {
+          padding: 0 10px;
+        }
+
+        .header-icon {
+          font-size: 40px;
+        }
+
+        .header h1 {
+          font-size: 28px;
+        }
+
+        .header p {
+          font-size: 14px;
+        }
+
+        .header-subtitle {
+          font-size: 11px;
+          padding: 0.3rem 1rem;
+        }
+
+        .card {
+          padding: 20px 15px;
+        }
+
+        .card-icon {
+          font-size: 35px;
+        }
+
+        .card h2 {
+          font-size: 20px;
+        }
+
+        .card p {
+          font-size: 13px;
+        }
+
+        .features li {
+          font-size: 12px;
+          padding: 8px 12px;
+        }
+
+        .btn {
+          font-size: 14px;
+          padding: 12px;
+        }
+      }
+
+      /* تأثير نبض خفيف */
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        50% {
+          box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .card {
+        animation: slideUp 0.8s ease-out, pulse 4s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- خلفية تكنولوجية -->
+    <div class="tech-background"></div>
+    <div class="grid-overlay"></div>
+    <div class="glow-circles">
+      <div class="glow-circle glow-circle-1"></div>
+      <div class="glow-circle glow-circle-2"></div>
+      <div class="glow-circle glow-circle-3"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+    <div class="digital-lines" id="digital-lines"></div>
+
+    <div class="wrapper">
+      <div class="header">
+        <div class="header-icon">🚀</div>
+        <h1>مرحباً بك في منصة اكرم</h1>
+        <p>منصة التواصل الآمنة والمتقدمة</p>
+        <div class="header-subtitle">
+          ⚡ تكنولوجيا حديثة • أمان عالي • تجربة فريدة
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- كارت تسجيل الدخول -->
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h2>تسجيل الدخول</h2>
+          <p>
+            لديك حساب بالفعل؟ ادخل هنا واستمتع بتجربة فريدة من التواصل الآمن
+          </p>
+
+          <ul class="features">
+            <li>وصول فوري للرسائل</li>
+            <li>إدارة متقدمة للجهات</li>
+            <li>تشفير عالي الجودة</li>
+            <li>حماية البيانات الشاملة</li>
+          </ul>
+
+          <button class="btn" onclick="window.location.href='login.html'">
+            <span>← ادخل إلى حسابك الآن</span>
+          </button>
+
+          <div class="info">
+            <strong>💡 حساب تجريبي</strong>
+            <p>admin / admin123</p>
+          </div>
+        </div>
+
+        <!-- كارت إنشاء حساب -->
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <h2>إنشاء حساب جديد</h2>
+          <p>جديد في المنصة؟ قدم طلب عضوية وانضم لمجتمعنا المتنامي الآن</p>
+
+          <ul class="features">
+            <li>تسجيل سريع وآمن</li>
+            <li>موافقة فورية من الإدارة</li>
+            <li>ملف شخصي مخصص</li>
+            <li>دعم عملاء 24/7</li>
+          </ul>
+
+          <button class="btn" onclick="window.location.href='register.html'">
+            <span>← طلب عضوية جديدة</span>
+          </button>
+
+          <div class="info">
+            <strong>ℹ️ معلومة مهمة</strong>
+            <p>طلبك سيتم مراجعته من قبل الفريق المتخصص</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // إنشاء جزيئات متحركة
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          const size = Math.random() * 3 + 1;
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+
+          particle.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}%;
+            top: ${y}%;
+            opacity: ${Math.random() * 0.5 + 0.2};
+            animation: particleFloat ${duration}s ${delay}s infinite ease-in-out;
+            box-shadow: 0 0 10px #08f7a3;
+          `;
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // إنشاء خطوط رقمية
+      function createDigitalLines() {
+        const linesContainer = document.getElementById("digital-lines");
+        const lineCount = 10;
+
+        for (let i = 0; i < lineCount; i++) {
+          const line = document.createElement("div");
+          line.className = "digital-line";
+
+          const x = Math.random() * 100;
+          const duration = Math.random() * 2 + 2;
+          const delay = Math.random() * 5;
+
+          line.style.cssText = `
+            left: ${x}%;
+            animation-duration: ${duration}s;
+            animation-delay: ${delay}s;
+          `;
+
+          linesContainer.appendChild(line);
+        }
+      }
+
+      // تأثير الماوس على الكروت
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty("--mouse-x", x + "%");
+          card.style.setProperty("--mouse-y", y + "%");
+        });
+      });
+
+      // تشغيل الأنيميشنات
+      createParticles();
+      createDigitalLines();
+
+      // إضافة CSS للأنيميشنات
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes particleFloat {
+          0%, 100% {
+            transform: translate(0, 0);
+          }
+          25% {
+            transform: translate(20px, -30px);
+          }
+          50% {
+            transform: translate(-15px, -60px);
+          }
+          75% {
+            transform: translate(25px, -30px);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

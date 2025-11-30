@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>التواصل السري - منضمة اكرم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="secure-contact.css" />
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+
+    <header class="main-header">
+      <div class="logo">
+        <span class="logo-main">منضمة اكرم</span>
+        <span class="logo-sub">قنوات التواصل الآمنة</span>
+      </div>
+      <nav class="top-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عن الموقع</a>
+        <a href="news.html">📰 الأخبار</a>
+        <a href="gallery.html">المعرض</a>
+        <a href="articles.html">المقالات</a>
+        <a href="contact.html" class="active">تواصل</a>
+        <button
+          id="toggle-bg-btn"
+          class="btn-toggle-bg"
+          title="تشغيل/إيقاف الخلفية"
+        >
+          🔆
+        </button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar right-sidebar">
+        <h3>🔐 معلومات الأمان</h3>
+        <ul>
+          <li>✅ اتصالات محشفرة</li>
+          <li>✅ البيانات محفوظة محلياً</li>
+          <li>✅ لا تُحفظ في السيرفر</li>
+          <li>✅ سرية 100%</li>
+        </ul>
+        <div class="security-badge">
+          <span class="lock-icon">🔒</span>
+          <p>محمي بالكامل</p>
+        </div>
+      </aside>
+
+      <main class="content">
+        <!-- قسم اختيار النوع -->
+        <section class="card contact-type-selector">
+          <h2>اختر طريقة التواصل</h2>
+          <div class="contact-buttons">
+            <button class="contact-btn active" data-type="general">
+              <span class="icon">💬</span>
+              <span class="label">تواصل عام</span>
+              <span class="desc">استفسارات عامة</span>
+            </button>
+            <button class="contact-btn" data-type="secure">
+              <span class="icon">🔐</span>
+              <span class="label">اتصال سري</span>
+              <span class="desc">رسائل سرية</span>
+            </button>
+            <button class="contact-btn" data-type="member">
+              <span class="icon">👥</span>
+              <span class="label">عضو</span>
+              <span class="desc">أعضاء المنظمة</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- نموذج التواصل العام -->
+        <section id="general-form" class="card contact-form-section active">
+          <h3>📬 تواصل عام</h3>
+          <form class="contact-form" onsubmit="handleGeneralContact(event)">
+            <div class="form-group">
+              <label for="name">الاسم:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="اكتب اسمك"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">البريد الإلكتروني:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="subject">الموضوع:</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="عنوان الرسالة"
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">الرسالة:</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="اكتب رسالتك هنا..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn primary full-width">إرسال</button>
+          </form>
+        </section>
+
+        <!-- نموذج التواصل السري -->
+        <section id="secure-form" class="card contact-form-section">
+          <h3>🔐 اتصال سري ومشفر</h3>
+          <p class="security-note">
+            ⚠️ هذه الرسائل محشفرة وتُحفظ محلياً فقط. الوصول يتطلب رمز سري.
+          </p>
+          <form class="contact-form" onsubmit="handleSecureContact(event)">
+            <div class="form-group">
+              <label for="sec-passcode">🔑 الرمز السري:</label>
+              <input
+                type="password"
+                id="sec-passcode"
+                name="passcode"
+                placeholder="أدخل رمزك السري"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="sec-name">الاسم (الحقيقي أو الكنية):</label>
+              <input
+                type="text"
+                id="sec-name"
+                name="name"
+                placeholder="هويتك"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="sec-email">البريد الآمن:</label>
+              <input
+                type="email"
+                id="sec-email"
+                name="email"
+                placeholder="encrypted@secure.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="sec-message">الرسالة (محشفرة):</label>
+              <textarea
+                id="sec-message"
+                name="message"
+                rows="7"
+                placeholder="اكتب رسالتك السرية هنا. سيتم تشفيرها تلقائياً..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label class="checkbox">
+                <input type="checkbox" name="self-destruct" />
+                <span>رسالة تختفي بعد 30 دقيقة</span>
+              </label>
+            </div>
+            <button type="submit" class="btn primary full-width">
+              إرسال مشفر 🔐
+            </button>
+          </form>
+        </section>
+
+        <!-- نموذج التواصل الخاص بالأعضاء -->
+        <section id="member-form" class="card contact-form-section">
+          <h3>👥 منطقة الأعضاء</h3>
+          <p class="security-note">⚠️ هذا القسم مخصص لأعضاء المنظمة فقط.</p>
+          <form class="contact-form" onsubmit="handleMemberContact(event)">
+            <div class="form-group">
+              <label for="member-id">🆔 رقم العضوية:</label>
+              <input
+                type="text"
+                id="member-id"
+                name="member-id"
+                placeholder="أدخل رقم عضويتك"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="member-password">🔑 كود الدخول:</label>
+              <input
+                type="password"
+                id="member-password"
+                name="password"
+                placeholder="كود الدخول السري"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="member-name">الاسم الكامل:</label>
+              <input
+                type="text"
+                id="member-name"
+                name="name"
+                placeholder="اسمك"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="member-message">الرسالة للقيادة:</label>
+              <textarea
+                id="member-message"
+                name="message"
+                rows="7"
+                placeholder="رسالتك للقيادة والقادة..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="priority">الأولوية:</label>
+              <select id="priority" name="priority">
+                <option value="normal">عادية</option>
+                <option value="urgent">عاجلة</option>
+                <option value="critical">حرجة</option>
+              </select>
+            </div>
+            <button type="submit" class="btn primary full-width">
+              إرسال للقيادة 📬
+            </button>
+          </form>
+        </section>
+
+        <!-- عرض الرسائل المحفوظة -->
+        <section class="card messages-section">
+          <h3>📋 الرسائل المحفوظة</h3>
+          <div class="message-tabs">
+            <button class="tab-btn active" data-filter="all">الكل</button>
+            <button class="tab-btn" data-filter="general">عام</button>
+            <button class="tab-btn" data-filter="secure">سري</button>
+            <button class="tab-btn" data-filter="member">أعضاء</button>
+          </div>
+          <div id="messages-list" class="messages-list">
+            <p class="empty-message">لا توجد رسائل محفوظة</p>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar left-sidebar">
+        <h3>🛠️ الأدوات</h3>
+        <ul>
+          <li>
+            <button class="tool-btn" onclick="clearAllMessages()">
+              🗑️ حذف الكل
+            </button>
+          </li>
+          <li>
+            <button class="tool-btn" onclick="exportMessages()">
+              📥 تحميل
+            </button>
+          </li>
+          <li>
+            <button class="tool-btn" onclick="showStats()">
+              📊 الإحصائيات
+            </button>
+          </li>
+          <li><a href="index.html">🏠 الرئيسية</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="main-footer">
+      <p>
+        © <span id="year"></span> - منضمة اكرم | نظام التواصل الآمن
+        <strong>🔐 محمي بالكامل</strong>
+      </p>
+    </footer>
+
+    <!-- Modal للتأكيد -->
+    <div id="confirmation-modal" class="modal">
+      <div class="modal-content">
+        <h3 id="modal-title">تأكيد</h3>
+        <p id="modal-message"></p>
+        <div class="modal-buttons">
+          <button class="btn primary" onclick="confirmAction()">
+            تأكيد ✅
+          </button>
+          <button class="btn ghost" onclick="cancelAction()">إلغاء ❌</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal للإحصائيات -->
+    <div id="stats-modal" class="modal">
+      <div class="modal-content">
+        <h3>📊 الإحصائيات</h3>
+        <div id="stats-content"></div>
+        <button class="btn primary" onclick="closeModal('stats-modal')">
+          حسناً
+        </button>
+      </div>
+    </div>
+
+    <script src="secure-contact.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

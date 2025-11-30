@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>موقع الماسونية والهاكر - الصفحة الرئيسية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="lightbox.css" />
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div id="bg-name" class="bg-name">
+      <span class="word glitch">AKRAM6</span>
+    </div>
+    <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+
+    <header class="main-header">
+      <div class="logo">
+        <!-- غيّر "منضمة اكرم" إلى اسمك -->
+        <span class="logo-main">منضمة اكرم</span>
+        <span class="logo-sub">عالم الماسونية والهاكر الوهمي</span>
+      </div>
+      <nav class="top-nav">
+        <a href="index.html" class="active">الرئيسية</a>
+        <a href="about.html">عن الموقع</a>
+        <a href="news.html">📰 الأخبار</a>
+        <a href="gallery.html">المعرض</a>
+        <a href="articles.html">المقالات</a>
+        <a href="contact.html">تواصل</a>
+        <div class="profile-widget">
+          <button
+            id="profileToggle"
+            class="profile-btn-circle"
+            title="الملف الشخصي"
+          >
+            👤
+          </button>
+          <div id="profileMenu" class="profile-dropdown">
+            <div id="profileContent">
+              <div class="not-logged-in">
+                <p>ليس لديك حساب نشط</p>
+                <p style="font-size: 12px; color: #ccc">
+                  قم بتسجيل الدخول أولاً
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <!-- سايدبار يمين -->
+      <aside class="sidebar right-sidebar">
+        <h3>روابط سريعة</h3>
+        <ul>
+          <li><a href="#hero">نظرة عامة</a></li>
+          <li><a href="#symbols">الرموز الماسونية</a></li>
+          <li><a href="#hacker">ستايل الهاكر</a></li>
+          <li><a href="gallery.html">انتقل للمعرض</a></li>
+        </ul>
+      </aside>
+
+      <!-- المحتوى الرئيسي -->
+      <main class="content">
+        <!-- القسم الرئيسي (Hero) المحدث -->
+        <section id="hero" class="hero-card modern-hero">
+          <div class="hero-overlay"></div>
+          <div class="hero-content-wrapper">
+            <div class="hero-text">
+              <div class="hero-badge">
+                <span class="badge-icon">⚡</span>
+                <span class="badge-text">منصة رقمية متطورة</span>
+              </div>
+              <h1 class="hero-title">
+                مرحباً بك في عالم
+                <span class="highlight gradient-text">منضمة اكرم</span>
+              </h1>
+              <p class="hero-description">
+                منصة إبداعية تجمع بين التصميم الحديث والتقنية المتقدمة. استكشف
+                عالماً من الإبداع والابتكار في بيئة رقمية فريدة من نوعها.
+              </p>
+              <div class="hero-features">
+                <div class="feature-item">
+                  <span class="feature-icon">🎨</span>
+                  <span class="feature-text">تصميم احترافي</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">⚡</span>
+                  <span class="feature-text">أداء سريع</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🔒</span>
+                  <span class="feature-text">آمن ومحمي</span>
+                </div>
+              </div>
+              <div class="hero-actions">
+                <a href="about.html" class="btn primary modern-btn">
+                  <span class="btn-text">اكتشف المزيد</span>
+                  <span class="btn-icon">→</span>
+                </a>
+                <a href="gallery.html" class="btn ghost modern-btn">
+                  <span class="btn-text">معرض الصور</span>
+                  <span class="btn-icon">🖼️</span>
+                </a>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="visual-container">
+                <div class="floating-card card-1">
+                  <div class="card-icon">📊</div>
+                  <div class="card-title">إحصائيات متقدمة</div>
+                </div>
+                <div class="floating-card card-2">
+                  <div class="card-icon">🎯</div>
+                  <div class="card-title">دقة عالية</div>
+                </div>
+                <div class="floating-card card-3">
+                  <div class="card-icon">⚙️</div>
+                  <div class="card-title">تحكم كامل</div>
+                </div>
+                <div class="central-orb">
+                  <div class="orb-ring ring-1"></div>
+                  <div class="orb-ring ring-2"></div>
+                  <div class="orb-ring ring-3"></div>
+                  <div class="orb-core">
+                    <span class="orb-symbol">◆</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- قسم الإحصائيات المحدث -->
+        <section class="card modern-stats-section">
+          <div class="section-header">
+            <h2 class="section-title">
+              <span class="title-icon">📊</span>
+              إحصائيات المنصة
+            </h2>
+            <p class="section-subtitle">أرقام تعكس تميزنا وإبداعنا</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <span class="stat-icon">🖼️</span>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number" data-target="43">0</span>
+                <span class="stat-label">صورة متحركة</span>
+                <div class="stat-progress">
+                  <div class="stat-progress-bar" style="width: 86%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <span class="stat-icon">🎯</span>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number" data-target="100">0</span>
+                <span class="stat-plus">%</span>
+                <span class="stat-label">جودة عالية</span>
+                <div class="stat-progress">
+                  <div class="stat-progress-bar" style="width: 100%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <span class="stat-icon">⚡</span>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number" data-target="24">0</span>
+                <span class="stat-label">ساعة متوفرة</span>
+                <div class="stat-progress">
+                  <div class="stat-progress-bar" style="width: 100%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon-wrapper">
+                <span class="stat-icon">✨</span>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number infinity">∞</span>
+                <span class="stat-label">إبداع لا محدود</span>
+                <div class="stat-progress">
+                  <div
+                    class="stat-progress-bar infinity-bar"
+                    style="width: 100%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- قسم الرموز -->
+        <section id="symbols" class="card">
+          <h2>الرموز الماسونية</h2>
+          <p>
+            الماسونية ارتبطت عبر التاريخ بمجموعة من الرموز الشهيرة مثل: الفرجار
+            والزاوية، العين التي ترى كل شيء، والأعمدة. في هذا الموقع يتم عرض هذه
+            الرموز كعنصر بصري وجمالي فقط.
+          </p>
+          <div class="symbol-grid">
+            <div class="symbol-item">
+              <div class="symbol-icon">⊙</div>
+              <h3>العين</h3>
+              <p>
+                ترمز غالباً للمعرفة والمراقبة في ثقافات عديدة، وليست حصرية
+                للماسونية.
+              </p>
+            </div>
+            <div class="symbol-item">
+              <div class="symbol-icon">△</div>
+              <h3>المثلث</h3>
+              <p>
+                شكل هندسي بسيط لكن يُستخدم بكثرة في الشعارات ذات الطابع الغامض.
+              </p>
+            </div>
+            <div class="symbol-item">
+              <div class="symbol-icon">☷</div>
+              <h3>الرموز الهندسية</h3>
+              <p>خطوط، دوائر، وأشكال معقدة تعطي إحساساً بالغموض والتنظيم.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- قسم الهاكر المزيف -->
+        <section id="hacker" class="card hacker-section">
+          <div class="hacker-text">
+            <h2>واجهة الهاكر المزيفة (Fake Hacker)</h2>
+            <p>
+              كثير من التصاميم تستخدم شاشة سوداء مليئة بالأكواد لإعطاء إحساس
+              “هاكر”، لكن في الحقيقة هي مجرد تأثير بصري وجرافيك. هنا نستخدم هذا
+              الأسلوب لإضافة جو سينمائي للموقع.
+            </p>
+            <p>
+              يمكنك وضع صور متحركة GIF لخلفيات كود أو
+              <span class="highlight">Matrix</span> أو شاشات طرفية.
+            </p>
+          </div>
+
+          <div>
+            <div class="terminal">
+              <div class="terminal-header">
+                <span class="dot"></span><span class="dot"></span
+                ><span class="dot"></span>
+                <span class="terminal-title">fake_hacker_console.exe</span>
+              </div>
+              <div class="terminal-body" id="terminal-body">
+                <!-- يتم ملؤه تلقائياً ثم عن طريق الكيبورد -->
+              </div>
+            </div>
+
+            <div class="hacker-controls">
+              <p class="hint">
+                اضغط أي زر في الكيبورد (وأنت مو داخل خانة كتابة) لظهور أكواد
+                هاكر وهمية 🎮
+              </p>
+              <ul class="hotkeys-list">
+                <li><strong>Tab</strong> ➜ إظهار/إخفاء قائمة الاختصارات</li>
+                <li><strong>Esc</strong> ➜ مسح شاشة التيرمنال</li>
+                <li><strong>Ctrl + K</strong> ➜ تفعيل/إيقاف وضع الهاكر</li>
+              </ul>
+              <button id="toggle-hacker-mode" class="btn ghost small">
+                إيقاف وضع الهاكر مؤقتاً
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- سايدبار يسار -->
+      <aside class="sidebar left-sidebar">
+        <h3>أقسام الموقع</h3>
+        <ul>
+          <li><a href="index.html" class="active">الصفحة الرئيسية</a></li>
+          <li><a href="about.html">من نحن</a></li>
+          <li><a href="articles.html">مقالات وتحليلات</a></li>
+          <li><a href="gallery.html">صور ومواد بصرية</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>منضمة اكرم</h3>
+          <p>منصة ترفيهية وتعليمية متخصصة في الثقافة الرقمية والفن البصري.</p>
+        </div>
+        <div class="footer-section">
+          <h3>الروابط السريعة</h3>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الموقع</a></li>
+            <li><a href="gallery.html">المعرض</a></li>
+            <li><a href="contact.html">التواصل</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>تابعنا</h3>
+          <div class="social-links">
+            <a href="#" title="Facebook">f</a>
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="Instagram">📷</a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <p class="footer-copyright">
+        © <span id="year"></span> - موقع بإدارة <strong>منضمة اكرم</strong>.
+        جميع الحقوق محفوظة.
+      </p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-overlay">
+      <div class="lightbox-container">
+        <img class="lightbox-image" src="" alt="Full screen" />
+        <span class="lightbox-close">&times;</span>
+      </div>
+    </div>
+
+    <!-- Fullscreen Terminal Modal -->
+    <div id="fullscreen-terminal" class="fullscreen-terminal">
+      <div class="terminal">
+        <div class="terminal-header">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="terminal-title">HACKER TERMINAL v2.0</span>
+        </div>
+        <div class="terminal-body">$ echo 'Connected...'</div>
+      </div>
+    </div>
+
+    <!-- نافذة تعليمات تشبه GeekTyper -->
+    <div id="hotkeys-overlay" class="hotkeys-overlay">
+      <div class="hotkeys-panel">
+        <h2>وضع الهاكر الوهمي</h2>
+        <p>هذا الوضع للضحك والتصميم فقط، لا يوجد أي تهكير حقيقي 😄</p>
+        <ul>
+          <li><strong>H</strong> ➜ إظهار / إخفاء هذه القائمة</li>
+          <li><strong>F</strong> ➜ ملء الشاشة بـ Terminal</li>
+          <li><strong>Esc</strong> ➜ إغلاق النوافذ</li>
+          <li>اضغط على أي صورة في المعرض ➜ معاينة بملء الشاشة</li>
+        </ul>
+        <button id="close-hotkeys" class="btn primary full-width">
+          فهمت، إرجاع الوضع 😎
+        </button>
+      </div>
+    </div>
+
+    <script src="lightbox.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
