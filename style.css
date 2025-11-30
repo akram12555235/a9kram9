@@ -2646,3 +2646,225 @@ button {
     display: none;
   }
 }
+
+/* ========================================
+   تحسينات شاملة للهواتف المحمولة
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* الهيدر */
+  .main-header {
+    flex-direction: column;
+    padding: 10px 15px;
+    gap: 10px;
+  }
+
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+
+  .logo-main {
+    font-size: 1.3rem !important;
+  }
+
+  .logo-sub {
+    font-size: 0.7rem !important;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .top-nav a {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  /* المحتوى الرئيسي */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .content {
+    order: 1;
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .sidebar.left-sidebar {
+    order: 2;
+  }
+
+  .sidebar.right-sidebar {
+    order: 3;
+  }
+
+  /* البطاقات */
+  .card {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+
+  .card h1 {
+    font-size: 1.4rem;
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* Hero Section */
+  .hero-section,
+  .modern-hero {
+    padding: 30px 15px;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: 1.5rem !important;
+  }
+
+  .hero-description {
+    font-size: 0.9rem !important;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feature-item {
+    padding: 10px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  /* الإحصائيات */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 15px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  /* الفوتر */
+  .main-footer {
+    padding: 20px 15px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-section {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-copyright {
+    font-size: 0.8rem;
+  }
+}
+
+/* شاشات أصغر - الهواتف الصغيرة */
+@media (max-width: 480px) {
+  .main-header {
+    padding: 8px 10px;
+  }
+
+  .logo-main {
+    font-size: 1.1rem !important;
+  }
+
+  .top-nav a {
+    font-size: 0.65rem;
+    padding: 5px 8px;
+  }
+
+  .hero-title {
+    font-size: 1.3rem !important;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h1 {
+    font-size: 1.2rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+  }
+
+  /* المعرض */
+  .gallery-hero {
+    padding: 20px 10px;
+  }
+
+  .gallery-title {
+    font-size: 1.5rem !important;
+  }
+
+  .filter-buttons {
+    gap: 5px;
+  }
+
+  .filter-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+
+  .modern-gallery-grid {
+    gap: 10px;
+  }
+
+  .gallery-item img {
+    height: 150px;
+  }
+}
